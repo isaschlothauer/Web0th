@@ -1,5 +1,6 @@
-import Image from "next/image";
 import styles from "./page.module.css";
+
+import FormInput from './_components/formInput'
 
 export default function Home() {
   return (
@@ -13,13 +14,12 @@ export default function Home() {
         <main className={styles.main}>
 
           <div className={styles.authContainer}>
-            <p className={styles.loginText}>Log in or create account</p>
             <div className={styles.loginContainer}>
-              <div className={styles.authPass}>
-                
-
+              <div className={styles.authText}>
+                Log in or create account
               </div>
-
+              {/* <p className={styles.loginText}></p> */}
+              <FormInput />
             </div>
           </div>
         </main>
