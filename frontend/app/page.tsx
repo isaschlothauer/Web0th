@@ -1,4 +1,6 @@
 import styles from "./page.module.css";
+import Link from 'next/link';
+
 
 import FormInput from './_components/formInput'
 
@@ -15,11 +17,15 @@ export default function Home() {
 
           <div className={styles.authContainer}>
             <div className={styles.loginContainer}>
-              <div className={styles.authText}>
-                Log in or create account
+              <div className={styles.signInContainerText}>
+                Log in or <Link href="/">create account</Link>
               </div>
-              {/* <p className={styles.loginText}></p> */}
               <FormInput />
+              <p className={styles.loginRecovery}>Forgot your login or password? 
+                <Link href="/" className={styles.linkStyle}>
+                  Account recovery
+                </Link>
+              </p>
             </div>
           </div>
         </main>

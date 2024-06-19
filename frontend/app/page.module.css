@@ -1,12 +1,10 @@
 
 /* Main page */
 .mainSection {
-  /* width: 100%; */
   max-width: 600px;
   margin: 0 auto 0 auto;
   font-size: 16px;
   height: 100vh;
-  position: relative;
 }
 
 .mainHeader {
@@ -26,10 +24,7 @@
 }
 
 .authContainer {
-  position: absolute;
-  top: 50%;
-  width: 100%;
-  translate: 0% -100%;
+  margin-top: 10%;
 }
 
 .loginText {
@@ -40,13 +35,27 @@
 .loginContainer {
   font-weight: 400;
   background-color: var(--login-bg-color);
-  border-radius: 0.5em; 
+  border-radius: 0.4em; 
   border: 1px solid rgb(204, 204, 204);
+  padding-bottom: 2em;
 }
 
-.authText {
+.signInContainerText {
   font-weight: 400;
-  font-size: 1.5em;
+  font-size: 1.2em;
   text-align: center;
+  margin-top: 1em;
   margin-bottom: 0.5em;
+}
+
+
+.loginRecovery {
+  font-weight: 300;
+  font-size: 0.8em;
+  text-align: center;
+  
+}
+
+.linkStyle {
+  margin-left: 0.5em;
 }

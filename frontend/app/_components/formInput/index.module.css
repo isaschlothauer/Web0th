@@ -16,22 +16,32 @@
 }
 
 .inputFieldLabel {
-  width: 6.5em;
+  width: 5em;
   display: inline-block;
+  /* padding: 0 1em  */
 }
 
 .inputFieldStyles, .checkboxContainer{
   width: 100%;
-  max-width: 20em;
+}
+
+.inputFieldStyles {
+  border: 1px solid rgba(150, 148, 148, 0.5);
+  background-color: var(--inputFieldBackgroundColor);
+  height: 2em;
+  border-radius: 0.5em;
+  width: 22em;
 }
 
 .checkboxContainer {
   margin-top: 1em;
   display: flex;
   /* margin-left: 9.5em; */
-  margin: 0 auto 0 auto;
+  margin:2em auto 0 auto;
   /* border: 1px dotted red; */
   padding: 0 0.8em;
+  max-width: 25em;
+
 }
 
 .checkboxContainer > input {
@@ -43,9 +53,37 @@
   /* margin-left: 0.5em; */
   font-weight: 600;
   font-size: 0.9em;
+  
 }
 
 .checkboxLabel {
   margin-left: 0.5em;
 }
 
+.submitButtonLocation {
+  display: flex;
+  align-content: center;
+  justify-content: center;
+  margin: 2em 0 1em 0;
+}
+
+.submitButton {
+  width: 6em;
+  height: 2em;
+}
+
+.inputClearContainer {
+  display: flex;
+  position: relative;
+}
+
+.inputClearButton {
+  position: absolute;
+  right: 0.5em;
+  top: 0.4em;
+  border-radius: 1em;
+  width: 1.2em;
+  height: 1.2em;
+  border: 1px solid rgb(0, 0, 0, 0.1);
+  opacity: 0.4;
+}
