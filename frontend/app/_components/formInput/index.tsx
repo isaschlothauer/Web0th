@@ -40,7 +40,8 @@ export default function FormInput() {
 
   const loginSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    console.log(formData);
+
+    // API call
   }
 
   const clearInput = (field: keyof FormDataProps) => {
@@ -69,11 +70,12 @@ export default function FormInput() {
                     type={element.type} value={formData[element.label as keyof FormDataProps] as string} 
                     onChange={handleInputChange} 
                   />
+
+                  {/* Input clear button  */}
                   <button 
                     type="button" 
                     className={styles.inputClearButton} 
                     value={element.label}
-                    // onClick={clearInput}   
                     onClick={() => clearInput(element.label as keyof FormDataProps)}
                     >
                     x
