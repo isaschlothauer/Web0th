@@ -1,9 +1,15 @@
+'use client'
 import styles from "./page.module.css";
 import Link from 'next/link';
 
-import FormInput from './_components/formInput'
+import { useState } from 'react';
+
+import FormInput from './_components/formInput';
+import AccountCreation from './_components/accountCreation';
 
 export default function Home() {
+  const [ authComponentVisible, setAuthComponentVisible ] = useState<boolean>(false);
+
   return (
     <>
       <div className={styles.mainSection}>
@@ -16,15 +22,29 @@ export default function Home() {
 
           <div className={styles.authContainer}>
             <div className={styles.loginContainer}>
-              <div className={styles.signInContainerText}>
-                Log in or <Link href="/">create account</Link>
-              </div>
-              <FormInput />
-              <p className={styles.loginRecovery}>Forgot your login or password? 
-                <Link href="/" className={styles.linkStyle}>
-                  Account recovery
-                </Link>
-              </p>
+              {authComponentVisible? 
+              <>
+                <div className={styles.signInContainerText}>
+                  Log in or <Link href="/">create account</Link>
+                </div>
+
+                <FormInput />
+                
+                <p className={styles.loginRecovery}>Forgot your login or password? 
+                  <Link href="/" className={styles.linkStyle}>
+                    Account recovery
+                  </Link>
+                </p>
+              </> 
+              : 
+              <>
+                <div className={styles.signInContainerText}>
+                  Account creation
+                </div>
+                <AccountCreation />
+              </>
+              }
+
             </div>
           </div>
 

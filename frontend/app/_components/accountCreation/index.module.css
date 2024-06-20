@@ -23,7 +23,6 @@
 
 .inputFieldLabel {
   width: 6em;
-  font-size: 0.9em;
 }
 
 .inputFieldStyles {
@@ -76,9 +75,5 @@
 @media screen and (min-width: 600px) {
   .form {
     padding: 0;
-  }
-
-  .inputFieldLabel {
-    font-size: 1em;
   }
 }
