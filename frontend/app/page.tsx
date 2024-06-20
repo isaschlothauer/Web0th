@@ -1,7 +1,6 @@
 import styles from "./page.module.css";
 import Link from 'next/link';
 
-
 import FormInput from './_components/formInput'
 
 export default function Home() {
@@ -28,6 +27,7 @@ export default function Home() {
               </p>
             </div>
           </div>
+
         </main>
       </div>
     </>

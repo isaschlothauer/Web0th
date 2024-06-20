@@ -17,9 +17,9 @@ export default function FormInput() {
     rememberId: false
   })
 
-  useEffect(() => {
-    console.log(formData);
-  }, [formData])
+  // useEffect(() => {
+  //   console.log("DELETE ME from index.tsx", formData);
+  // }, [formData])
 
   // Input data state handler
   const handleInputChange = (e: ChangeEvent<HTMLInputElement>) => {
@@ -42,6 +42,7 @@ export default function FormInput() {
     e.preventDefault();
 
     // API call
+    console.log(formData)
   }
 
   const clearInput = (field: keyof FormDataProps) => {
@@ -51,60 +52,58 @@ export default function FormInput() {
     }));
   }
   
-  
   return (
     <>
       <form onSubmit={loginSubmit}>
         <div className={styles.form}>
-          <ul className={styles.ulStyles}>
+          <div className={styles.formContentStyles}>
+            <ul className={styles.ulStyles}>
 
-            {/* Input field mapping */}
-            {formDataInputs.map((element) => (
-              <li key={element.id} className={styles.listStyles}>
-                <label htmlFor={element.label} className={styles.inputFieldLabel} >{element.input}</label>
-                <div className={styles.inputClearContainer}>
-                  <input 
-                    id={element.label}  
-                    name={element.label} 
-                    className={styles.inputFieldStyles} 
-                    type={element.type} value={formData[element.label as keyof FormDataProps] as string} 
-                    onChange={handleInputChange} 
-                  />
+              {/* Input field mapping */}
+              {formDataInputs.map((element) => (
+                <li key={element.id} className={styles.listStyles}>
+                  <label 
+                    htmlFor={element.label} 
+                    className={styles.inputFieldLabel} 
+                  >
+                    {element.input}
+                  </label>
 
-                  {/* Input clear button  */}
-                  <button 
-                    type="button" 
-                    className={styles.inputClearButton} 
-                    value={element.label}
-                    onClick={() => clearInput(element.label as keyof FormDataProps)}
-                    >
-                    x
-                  </button>
-                </div>
-              </li>
-            ))}
-          </ul>
+                  <div className={styles.inputClearContainer}>
+                    <input 
+                      id={element.label}  
+                      name={element.label} 
+                      className={styles.inputFieldStyles} 
+                      type={element.type} value={formData[element.label as keyof FormDataProps] as string} 
+                      onChange={handleInputChange} 
+                      required={element.required}
+                    />
+                  </div>
+                </li>
+              ))}
+            </ul>
+          </div>
+          
+          {/* Remember user ID button */}
+          <div className={styles.checkbox}>
+            <input 
+              type="checkbox" 
+              id="rememberId" 
+              name="rememberId" 
+              onChange={handleCheckbox} 
+            />
+            <label htmlFor="rememberId" className={styles.checkboxLabel}>
+              Remember user ID
+            </label>
+          </div> 
         </div>
 
-        {/* Remember user ID button */}
-        <div className={styles.checkboxContainer}>
-          <input 
-            type="checkbox" 
-            id="rememberId" 
-            name="rememberId" 
-            onChange={handleCheckbox} 
-          />
-          <label htmlFor="rememberId" className={styles.checkboxLabel}>Remember user ID</label>
-        </div>
-
-        <div className={styles.submitButtonLocation}>
+        {/* Submit button */}
+        <div className={styles.submitButtonAlignment}>
           <button type="submit" className={styles.submitButton}>Sign In</button>
         </div>
 
       </form>
-      
-
-
     </>
   )
 }
