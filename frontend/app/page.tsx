@@ -8,7 +8,12 @@ import FormInput from './_components/formInput';
 import AccountCreation from './_components/accountCreation';
 
 export default function Home() {
-  const [ authComponentVisible, setAuthComponentVisible ] = useState<boolean>(false);
+  const [ authComponentVisible, setAuthComponentVisible ] = useState<number>(0);
+
+  function registrationCancellation() {
+    // This sets account registration back to log in component
+    setAuthComponentVisible(0);
+  }
 
   return (
     <>
@@ -22,26 +27,45 @@ export default function Home() {
 
           <div className={styles.authContainer}>
             <div className={styles.loginContainer}>
-              {authComponentVisible? 
+              {authComponentVisible == 0? 
               <>
                 <div className={styles.signInContainerText}>
-                  Log in or <Link href="/">create account</Link>
+                  Log in or 
+                  <button
+                    type="button" 
+                    onClick={() => setAuthComponentVisible(1)}
+                    className={styles.registration}  
+                  >
+                    create a new account
+                  </button>
                 </div>
 
                 <FormInput />
                 
                 <p className={styles.loginRecovery}>Forgot your login or password? 
-                  <Link href="/" className={styles.linkStyle}>
+                  <button 
+                    type="button" 
+                    className={styles.linkStyle}
+                    onClick={()=>setAuthComponentVisible(0)}
+                  >
                     Account recovery
-                  </Link>
+                  </button>
                 </p>
               </> 
               : 
+              authComponentVisible == 1? 
               <>
                 <div className={styles.signInContainerText}>
                   Account creation
                 </div>
-                <AccountCreation />
+                <AccountCreation registrationCancel={registrationCancellation}/>
+              </>
+              :
+              <>
+                <div className={styles.signInContainerText}>
+                  Account recovery
+                </div>
+                <AccountCreation registrationCancel={registrationCancellation}/>
               </>
               }
 

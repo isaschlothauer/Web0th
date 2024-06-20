@@ -3,38 +3,30 @@
 import React, { ChangeEvent, useState, useEffect } from 'react';
 import styles from './index.module.css'
 import { accountRegistrationInputArray } from './accountRegistrationInputArray'
-
-interface FormDataProps {
+import SubmitButton from '../formSubmitButton'
+interface AccountRegistrationProps {
   email: string;
   password: string;
-  rememberId: boolean;
+  passwordConfirm: string;
 }
 
-export default function AccountCreation() {
-  const [formData, setFormData] = useState<FormDataProps>({
+interface submitButtonProps {
+  registrationCancel: ()=> void;
+}
+
+export default function AccountCreation(props: submitButtonProps) {
+  const [registrationData, setRegistrationData] = useState<AccountRegistrationProps>({
     email: '',
     password: '',
-    rememberId: false,
+    passwordConfirm: '',
   })
-
-  // useEffect(() => {
-  //   console.log("DELETE ME from index.tsx", formData);
-  // }, [formData])
 
   // Input data state handler
   const handleInputChange = (e: ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
-    setFormData((prevState => ({
+    setRegistrationData((prevState => ({
       ...prevState,
       [name]: value,
-    })))
-  }
-
-  const handleCheckbox = (e: ChangeEvent<HTMLInputElement>) => {
-    const { name, checked } = e.target;
-    setFormData((prevState => ({
-      ...prevState,
-      [name]: checked
     })))
   }
 
@@ -42,15 +34,12 @@ export default function AccountCreation() {
     e.preventDefault();
 
     // API call
-    console.log(formData)
+    console.log(registrationData)
   }
 
-  const clearInput = (field: keyof FormDataProps) => {
-    setFormData(prevState => ({
-      ...prevState,
-      [field]: ''
-    }));
-  }
+  // function registrationCancel() {
+  //   console.log("registration cancelled")
+  // }
   
   return (
     <>
@@ -74,7 +63,7 @@ export default function AccountCreation() {
                       id={item.label}  
                       name={item.label} 
                       className={styles.inputFieldStyles} 
-                      type={item.type} value={formData[item.label as keyof FormDataProps] as string} 
+                      type={item.type} value={registrationData[item.label as keyof AccountRegistrationProps] as string} 
                       onChange={handleInputChange} 
                       required={item.required}
                     />
@@ -83,27 +72,16 @@ export default function AccountCreation() {
               ))}
             </ul>
           </div>
-          
-          {/* Remember user ID button */}
-          {/* <div className={styles.checkbox}>
-            <input 
-              type="checkbox" 
-              id="rememberId" 
-              name="rememberId" 
-              onChange={handleCheckbox} 
-            />
-            <label htmlFor="rememberId" className={styles.checkboxLabel}>
-              Remember user ID
-            </label>
-          </div>  */}
         </div>
 
         {/* Submit button */}
         <div className={styles.submitButtonAlignment}>
-          <button type="submit" className={styles.submitButton}>Sign In</button>
+          <SubmitButton buttonName='Create account'/>
         </div>
-
       </form>
+
+      {/* Registration cancellation and return to log in */}
+      <button className={styles.accountRegCancel} onClick={props.registrationCancel}>Cancel</button>
     </>
   )
 }

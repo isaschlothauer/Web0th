@@ -2,6 +2,9 @@
   --bg-color: #ecf0f5;
   --login-bg-color: white;
   --inputFieldBackgroundColor: #fcfcfcf3;
+  --buttonColor: #0004ff;
+  --mainFontColor: #ffff;
+  --linkFontColor: #182fff;
 }
 
 .layoutStyle {

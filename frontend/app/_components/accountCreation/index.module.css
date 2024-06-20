@@ -62,14 +62,14 @@
   display: flex;
   align-content: center;
   justify-content: center;
-  margin: 2em 0 1em 0;
+  margin: 1.5em 0 1em 0;
 }
 
-.submitButton {
-  width: 6em;
-  height: 2em;
-  border: 1px solid rgb(0, 0, 0, 0.1);
-  border-radius: 0.5em;
+.accountRegCancel {
+  border: rgba(0, 0, 0, 0);
+  background: rgba(0, 0, 0, 0);
+  display: flex;
+  margin: 0 auto 0 auto;
 }
 
 @media screen and (min-width: 600px) {
