@@ -1,0 +1,79 @@
+/* Form styles */
+.form {
+  max-width: 20em;
+  margin: 0 auto 0 auto;
+  padding: 0 1em 0 1em;
+}
+
+.formContentStyles {
+  align-content: center;
+}
+
+.ulStyles {
+  list-style-type: none;
+}
+
+.listStyles {
+  display: flex;
+  align-items: center;
+  justify-content:space-between;
+  padding: 0.5em 0;
+  gap: 0.5em; 
+}
+
+.inputFieldLabel {
+  width: 6em;
+}
+
+.inputFieldStyles {
+  width: 100%;
+  border: 1px solid rgba(150, 148, 148, 0.5);
+  background-color: var(--inputFieldBackgroundColor);
+  height: 2em;
+  border-radius: 0.5em;
+  box-sizing: border-box;
+  padding: 0 0.5em 0 0.5em
+}
+
+.formContentStyles, .inputClearContainer {
+  width: 100%;
+}
+
+/* Checkbox styles */
+.checkbox {
+  display: flex;
+  align-items: center;
+  margin-top: 1em;
+}
+
+.checkbox > input {
+  height: 0.8em;
+}
+
+.checkbox > label {
+  margin-left: 0.5em; 
+  font-weight: 600;
+  font-size: 0.8em;
+  vertical-align: middle;
+}
+
+/* Submit button styles */
+.submitButtonAlignment {
+  display: flex;
+  align-content: center;
+  justify-content: center;
+  margin: 1.5em 0 1em 0;
+}
+
+.accountRegCancel {
+  border: rgba(0, 0, 0, 0);
+  background: rgba(0, 0, 0, 0);
+  display: flex;
+  margin: 0 auto 0 auto;
+}
+
+@media screen and (min-width: 600px) {
+  .form {
+    padding: 0;
+  }
+}

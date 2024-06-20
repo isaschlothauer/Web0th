@@ -1,11 +1,10 @@
 'use client'
 import styles from "./page.module.css";
-import Link from 'next/link';
-
 import { useState } from 'react';
 
 import FormInput from './_components/formInput';
 import AccountCreation from './_components/accountCreation';
+import AccountRecovery from './_components/accountRecovery'
 
 export default function Home() {
   const [ authComponentVisible, setAuthComponentVisible ] = useState<number>(0);
@@ -30,7 +29,7 @@ export default function Home() {
               {authComponentVisible == 0? 
               <>
                 <div className={styles.signInContainerText}>
-                  Log in or 
+                  SIgn in or 
                   <button
                     type="button" 
                     onClick={() => setAuthComponentVisible(1)}
@@ -46,7 +45,7 @@ export default function Home() {
                   <button 
                     type="button" 
                     className={styles.linkStyle}
-                    onClick={()=>setAuthComponentVisible(0)}
+                    onClick={()=>setAuthComponentVisible(2)}
                   >
                     Account recovery
                   </button>
@@ -65,7 +64,7 @@ export default function Home() {
                 <div className={styles.signInContainerText}>
                   Account recovery
                 </div>
-                <AccountCreation registrationCancel={registrationCancellation}/>
+                <AccountRecovery registrationCancel={registrationCancellation}/>
               </>
               }
 
