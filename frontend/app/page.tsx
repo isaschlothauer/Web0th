@@ -1,10 +1,12 @@
 'use client'
 import styles from "./page.module.css";
 import { useState } from 'react';
+import dynamic from 'next/dynamic'
 
-import FormInput from './_components/formInput';
-import AccountCreation from './_components/accountCreation';
-import AccountRecovery from './_components/accountRecovery'
+// Lazy loading
+const FormInput = dynamic(() => import('./_components/formInput'))
+const AccountCreation = dynamic(() => import('./_components/accountCreation'))
+const AccountRecovery = dynamic(() => import('./_components/accountRecovery'))
 
 export default function Home() {
   const [ authComponentVisible, setAuthComponentVisible ] = useState<number>(0);

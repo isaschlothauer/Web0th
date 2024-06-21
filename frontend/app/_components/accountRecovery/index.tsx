@@ -4,10 +4,11 @@ import React, { ChangeEvent, useState, useEffect } from 'react';
 import styles from './index.module.css'
 import { accountRecoveryInputArray } from './accountRecoveryInputArray'
 import SubmitButton from '../formSubmitButton'
+
 interface AccountRegistrationProps {
   email: string;
-  password: string;
-  passwordConfirm: string;
+  // password: string;
+  // passwordConfirm: string;
 }
 
 interface submitButtonProps {
@@ -17,8 +18,8 @@ interface submitButtonProps {
 export default function AccountRecovery (props: submitButtonProps) {
   const [registrationData, setRegistrationData] = useState<AccountRegistrationProps>({
     email: '',
-    password: '',
-    passwordConfirm: '',
+    // password: '',
+    // passwordConfirm: '',
   })
 
   // Input data state handler
@@ -34,7 +35,7 @@ export default function AccountRecovery (props: submitButtonProps) {
     e.preventDefault();
 
     // API call
-    console.log(registrationData)
+    console.log("AccRec: ", registrationData)
   }
   
   return (
@@ -72,7 +73,7 @@ export default function AccountRecovery (props: submitButtonProps) {
 
         {/* Submit button */}
         <div className={styles.submitButtonAlignment}>
-          <SubmitButton buttonName='Submit'/>
+          <SubmitButton buttonName='Submit' />
         </div>
       </form>
 

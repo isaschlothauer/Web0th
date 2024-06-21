@@ -4,6 +4,7 @@ import React, { ChangeEvent, useState, useEffect } from 'react';
 import styles from './index.module.css'
 import { accountRegistrationInputArray } from './accountRegistrationInputArray'
 import SubmitButton from '../formSubmitButton'
+
 interface AccountRegistrationProps {
   email: string;
   password: string;
