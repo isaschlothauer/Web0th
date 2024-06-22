@@ -1,17 +1,30 @@
-import express, { Express } from 'express';
+import express, { Express, Request, Response } from 'express';
 import dotenv from 'dotenv';
+import { database } from "./src/config/database"
 
 dotenv.config();
 
 const app: Express = express()
 
-const port: string = process.env.B_PORT || "5001";
-const f_port: string = process.env.F_PORT || "3001";
+const port: number = parseInt(process.env.B_PORT || "5001");
+const f_port: number = parseInt(process.env.F_PORT || "3001");
 
-app.get('/', (req, res) => {
-  res.send('Hello World!')
+// Database connection attempts
+database.getConnection((err, connection) => {
+  if (err) {
+    throw err;
+    process.exit(1);
+  } else {
+    console.log("Database connection established");
+    connection.release();
+  }
 })
 
 app.listen(port, () => {
-  console.log(`Example app listening on port ${port}`)
+  console.log(`Listening to port ${port}`);
 })
+
+app.get("/", (req: Request, res: Response) => {
+  res.send("<h1>This is a test</h1><div>This is a container</div><div>This is a content</div><div>This is the second content</div>");
+})
+
