@@ -5,7 +5,6 @@ interface submitButtonProps {
 }
 
 export default function SubmitButton(props: submitButtonProps) {
-  console.log("this is a prop test", props.buttonName)
   return (
     <button
       type="submit"
