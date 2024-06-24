@@ -1,6 +1,6 @@
 'use client'
 import styles from "./page.module.css";
-import { useState } from 'react';
+import { ReactNode, useState } from 'react';
 import dynamic from 'next/dynamic'
 
 // Lazy loading
@@ -9,11 +9,23 @@ const AccountCreation = dynamic(() => import('./_components/accountCreation'))
 const AccountRecovery = dynamic(() => import('./_components/accountRecovery'))
 
 export default function Home() {
-  const [ authComponentVisible, setAuthComponentVisible ] = useState<number>(0);
+  const [ renderLoginComponent, setRenderLoginComponent ] = useState<ReactNode>(<FormInput componentSetter={handleComponentChange} />)
 
-  function registrationCancellation() {
-    // This sets account registration back to log in component
-    setAuthComponentVisible(0);
+  // Component ID: 
+  // 0: Account Creation
+  // 1: Account Recovery
+  // others: Form Input
+  function handleComponentChange(compId: number) {
+    switch (compId) {
+      case 0:
+        setRenderLoginComponent(<AccountCreation componentSetter={handleComponentChange} />);
+        break;
+      case 1:
+        setRenderLoginComponent(<AccountRecovery  componentSetter={handleComponentChange} />);
+        break;
+      default:
+        setRenderLoginComponent(<FormInput componentSetter={handleComponentChange}/>)
+    }
   }
 
   return (
@@ -28,48 +40,7 @@ export default function Home() {
 
           <div className={styles.authContainer}>
             <div className={styles.loginContainer}>
-              {authComponentVisible == 0? 
-              <>
-                <div className={styles.signInContainerText}>
-                  SIgn in or 
-                  <button
-                    type="button" 
-                    onClick={() => setAuthComponentVisible(1)}
-                    className={styles.registration}  
-                  >
-                    create a new account
-                  </button>
-                </div>
-
-                <FormInput />
-                
-                <p className={styles.loginRecovery}>Forgot your login or password? 
-                  <button 
-                    type="button" 
-                    className={styles.linkStyle}
-                    onClick={()=>setAuthComponentVisible(2)}
-                  >
-                    Account recovery
-                  </button>
-                </p>
-              </> 
-              : 
-              authComponentVisible == 1? 
-              <>
-                <div className={styles.signInContainerText}>
-                  Account creation
-                </div>
-                <AccountCreation registrationCancel={registrationCancellation}/>
-              </>
-              :
-              <>
-                <div className={styles.signInContainerText}>
-                  Account recovery
-                </div>
-                <AccountRecovery registrationCancel={registrationCancellation}/>
-              </>
-              }
-
+              {renderLoginComponent}
             </div>
           </div>
 

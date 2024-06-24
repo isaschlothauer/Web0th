@@ -1,3 +1,12 @@
+.signInContainerText {
+  font-weight: 400;
+  font-size: 1em;
+  text-align: center;
+  margin-top: 1em;
+  margin-bottom: 0.5em;
+}
+
+
 /* Form styles */
 .form {
   max-width: 20em;
@@ -32,7 +41,8 @@
   height: 2em;
   border-radius: 0.5em;
   box-sizing: border-box;
-  padding: 0 0.5em 0 0.5em
+  padding: 0 0.5em 0 0.5em;
+  box-shadow: 3px 3px 5px rgba(150, 148, 148, 0.2);
 }
 
 .formContentStyles, .inputClearContainer {
@@ -73,6 +83,11 @@
 }
 
 @media screen and (min-width: 600px) {
+  .signInContainerText {
+    font-weight: 400;
+    font-size: 1.2em;
+  }
+
   .form {
     padding: 0;
   }

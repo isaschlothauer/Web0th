@@ -5,27 +5,25 @@ import styles from './index.module.css'
 import { accountRecoveryInputArray } from './accountRecoveryInputArray'
 import SubmitButton from '../formSubmitButton'
 
-interface AccountRegistrationProps {
+import { ComponentProps } from '../formInput';
+
+interface AccountRecoveryProps {
   email: string;
-  // password: string;
-  // passwordConfirm: string;
 }
 
 interface submitButtonProps {
   registrationCancel: ()=> void;
 }
 
-export default function AccountRecovery (props: submitButtonProps) {
-  const [registrationData, setRegistrationData] = useState<AccountRegistrationProps>({
+export default function AccountRecovery (componentSetter: ComponentProps) {
+  const [accountRecovery, setAccountRecovery] = useState<AccountRecoveryProps>({
     email: '',
-    // password: '',
-    // passwordConfirm: '',
   })
 
   // Input data state handler
   const handleInputChange = (e: ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
-    setRegistrationData((prevState => ({
+    setAccountRecovery((prevState => ({
       ...prevState,
       [name]: value,
     })))
@@ -35,7 +33,11 @@ export default function AccountRecovery (props: submitButtonProps) {
     e.preventDefault();
 
     // API call
-    console.log("AccRec: ", registrationData)
+    console.log("AccRec: ", accountRecovery)
+  }
+
+  const setComponent = (arg: number) => {
+    componentSetter.componentSetter(arg);
   }
   
   return (
@@ -43,6 +45,9 @@ export default function AccountRecovery (props: submitButtonProps) {
       <form onSubmit={accountCreationSbumit}>
         <div className={styles.form}>
           <div className={styles.formContentStyles}>
+            <div className={styles.signInContainerText}>
+              Account recovery
+            </div>
             <ul className={styles.ulStyles}>
 
               {/* Input field mapping */}
@@ -60,7 +65,7 @@ export default function AccountRecovery (props: submitButtonProps) {
                       id={item.label}  
                       name={item.label} 
                       className={styles.inputFieldStyles} 
-                      type={item.type} value={registrationData[item.label as keyof AccountRegistrationProps] as string} 
+                      type={item.type} value={accountRecovery[item.label as keyof AccountRecoveryProps] as string} 
                       onChange={handleInputChange} 
                       required={item.required}
                     />
@@ -78,7 +83,12 @@ export default function AccountRecovery (props: submitButtonProps) {
       </form>
 
       {/* Registration cancellation and return to log in */}
-      <button className={styles.accountRegCancel} onClick={props.registrationCancel}>Cancel</button>
+      <button 
+        className={styles.accountRegCancel} 
+        onClick={()=>setComponent(2)}
+        >
+        Cancel
+      </button>
     </>
   )
 }

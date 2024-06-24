@@ -4,6 +4,8 @@ import React, { ChangeEvent, useState, useEffect } from 'react';
 import styles from './index.module.css'
 import { accountRegistrationInputArray } from './accountRegistrationInputArray'
 import SubmitButton from '../formSubmitButton'
+import { ComponentProps } from '../formInput';
+
 
 interface AccountRegistrationProps {
   email: string;
@@ -11,11 +13,11 @@ interface AccountRegistrationProps {
   passwordConfirm: string;
 }
 
-interface submitButtonProps {
-  registrationCancel: ()=> void;
-}
+// interface submitButtonProps {
+//   registrationCancel: ()=> void;
+// }
 
-export default function AccountCreation(props: submitButtonProps) {
+export default function AccountCreation(componentSetter: ComponentProps) {
   const [registrationData, setRegistrationData] = useState<AccountRegistrationProps>({
     email: '',
     password: '',
@@ -38,15 +40,18 @@ export default function AccountCreation(props: submitButtonProps) {
     console.log(registrationData)
   }
 
-  // function registrationCancel() {
-  //   console.log("registration cancelled")
-  // }
+  const setComponent = (arg: number) => {
+    componentSetter.componentSetter(arg);
+  }
   
   return (
     <>
       <form onSubmit={accountCreationSbumit}>
         <div className={styles.form}>
           <div className={styles.formContentStyles}>
+            <div className={styles.signInContainerText}>
+              Account creation
+            </div>
             <ul className={styles.ulStyles}>
 
               {/* Input field mapping */}
@@ -82,7 +87,12 @@ export default function AccountCreation(props: submitButtonProps) {
       </form>
 
       {/* Registration cancellation and return to log in */}
-      <button className={styles.accountRegCancel} onClick={props.registrationCancel}>Cancel</button>
+      <button 
+        className={styles.accountRegCancel} 
+        onClick={()=>setComponent(2)}
+      >
+        Cancel
+      </button>
     </>
   )
 }

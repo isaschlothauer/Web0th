@@ -10,7 +10,12 @@ interface FormDataProps {
   rememberId: boolean;
 }
 
-export default function FormInput() {
+export interface ComponentProps {
+  componentSetter: (compId: number)=> void;
+}
+
+
+export default function FormInput(componentSetter: ComponentProps) {
   const [formData, setFormData] = useState<FormDataProps>({
     email: '',
     password: '',
@@ -51,12 +56,26 @@ export default function FormInput() {
       [field]: ''
     }));
   }
+
+  const setComponent = (arg: number) => {
+    componentSetter.componentSetter(arg);
+  }
   
   return (
     <>
       <form onSubmit={loginSubmit}>
         <div className={styles.form}>
           <div className={styles.formContentStyles}>
+            <div className={styles.signInContainerText}>
+              SIgn in or 
+              <button
+                type="button" 
+                onClick={()=>setComponent(0)}
+                className={styles.registration}  
+              >
+                create a new account
+              </button>
+            </div>
             <ul className={styles.ulStyles}>
 
               {/* Input field mapping */}
@@ -104,6 +123,15 @@ export default function FormInput() {
         </div>
 
       </form>
+      <p className={styles.loginRecovery}>Forgot your login or password? 
+        <button 
+          type="button" 
+          className={styles.linkStyle}
+          onClick={()=>setComponent(1)}
+          >
+          Account recovery
+        </button>
+      </p>
     </>
   )
 }
