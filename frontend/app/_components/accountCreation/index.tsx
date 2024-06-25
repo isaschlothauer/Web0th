@@ -6,6 +6,7 @@ import { accountRegistrationInputArray } from './accountRegistrationInputArray'
 import SubmitButton from '../formSubmitButton'
 import { ComponentProps } from '../formInput';
 
+import axios, {isCancel, AxiosError} from 'axios';
 
 interface AccountRegistrationProps {
   email: string;
@@ -13,9 +14,6 @@ interface AccountRegistrationProps {
   passwordConfirm: string;
 }
 
-// interface submitButtonProps {
-//   registrationCancel: ()=> void;
-// }
 
 export default function AccountCreation(componentSetter: ComponentProps) {
   const [registrationData, setRegistrationData] = useState<AccountRegistrationProps>({
@@ -33,11 +31,16 @@ export default function AccountCreation(componentSetter: ComponentProps) {
     })))
   }
 
-  const accountCreationSbumit = (e: React.FormEvent<HTMLFormElement>) => {
+  const accountCreationSbumit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
     // API call
-    console.log(registrationData)
+    try{
+      const res = await axios.post(`${process.env.NEXT_PUBLIC_URL}:${process.env.NEXT_PUBLIC_BACKEND_PORT}/userRoutes/${process.env.NEXT_PUBLIC_REGISTER}`, registrationData);     
+      console.log(res);
+    } catch (error) {
+      console.error(error);
+    }
   }
 
   const setComponent = (arg: number) => {

@@ -4,6 +4,8 @@ import React, { ChangeEvent, useState, useEffect } from 'react';
 import styles from './index.module.css'
 import { formDataInputs } from './inputFieldArray'
 
+import axios, {isCancel, AxiosError} from 'axios';
+
 interface FormDataProps {
   email: string;
   password: string;
@@ -21,10 +23,6 @@ export default function FormInput(componentSetter: ComponentProps) {
     password: '',
     rememberId: false
   })
-
-  // useEffect(() => {
-  //   console.log("DELETE ME from index.tsx", formData);
-  // }, [formData])
 
   // Input data state handler
   const handleInputChange = (e: ChangeEvent<HTMLInputElement>) => {
@@ -47,7 +45,7 @@ export default function FormInput(componentSetter: ComponentProps) {
     e.preventDefault();
 
     // API call
-    console.log(formData)
+    console.log()
   }
 
   const clearInput = (field: keyof FormDataProps) => {
@@ -60,7 +58,7 @@ export default function FormInput(componentSetter: ComponentProps) {
   const setComponent = (arg: number) => {
     componentSetter.componentSetter(arg);
   }
-  
+
   return (
     <>
       <form onSubmit={loginSubmit}>
