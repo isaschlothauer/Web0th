@@ -14,3 +14,7 @@
   color: var(--mainFontColor);
   background: rgb(40, 61, 255);
 }
+
+.buttonOpacity {
+  opacity: 0.3;
+}
