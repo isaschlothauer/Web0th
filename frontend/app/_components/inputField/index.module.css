@@ -1,0 +1,21 @@
+.listAlignment {
+  display: flex;
+  width: 100%;
+}
+
+.inputFieldLabel {
+  width: 7em;
+  font-size: 0.7em;
+  vertical-align: bottom;
+  align-self: flex-end;
+}
+
+.inputFieldStyles {
+  width: 100%;
+  background-color: var(--inputFieldBackgroundColor);
+  height: 2em;
+  box-sizing: border-box;
+  padding: 0 0.5em 0 0.5em;
+  border: none;
+  border-bottom: 1px solid rgba(107, 107, 107, 0.4);
+}

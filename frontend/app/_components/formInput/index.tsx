@@ -3,6 +3,8 @@
 import React, { ChangeEvent, useState, useEffect } from 'react';
 import styles from './index.module.css'
 import { formDataInputs } from './inputFieldArray'
+import InputField from '../inputField';
+
 
 import axios, {isCancel, AxiosError} from 'axios';
 
@@ -25,11 +27,10 @@ export default function FormInput(componentSetter: ComponentProps) {
   })
 
   // Input data state handler
-  const handleInputChange = (e: ChangeEvent<HTMLInputElement>) => {
-    const { name, value } = e.target;
+  const handleInputChange = (label: string, value: string) => {
     setFormData((prevState => ({
       ...prevState,
-      [name]: value,
+      [label]: value,
     })))
   }
 
@@ -79,7 +80,15 @@ export default function FormInput(componentSetter: ComponentProps) {
               {/* Input field mapping */}
               {formDataInputs.map((element) => (
                 <li key={element.id} className={styles.listStyles}>
-                  <label 
+                  <InputField inputProps={{
+                      required:element.required,
+                      input: element.input,
+                      label: element.label,
+                      type: element.type,
+                    }}
+                    onInputChange={handleInputChange}
+                  />
+                  {/* <label 
                     htmlFor={element.label} 
                     className={styles.inputFieldLabel} 
                   >
@@ -95,7 +104,7 @@ export default function FormInput(componentSetter: ComponentProps) {
                       onChange={handleInputChange} 
                       required={element.required}
                     />
-                  </div>
+                  </div> */}
                 </li>
               ))}
             </ul>
