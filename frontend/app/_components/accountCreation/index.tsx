@@ -28,8 +28,6 @@ export default function AccountCreation(componentSetter: ComponentProps) {
     passwordConfirm: '',
   })
   
-  // const [ submitButtonDisabled, setSubmitButtonDisabled ] = useState<boolean>(true);
-  const [ renderEmailAddressInvalidMsg, setRenderEmailAddressInvalidMsg ] = useState<boolean>(false);
   const [ renderMismatchedPassowrdWarningMsg, setRenderMismatchedPassowrdWarningMsg ] = useState<boolean>(false);
 
   const [ renderErrorMsg, setRenderErrorMsg ] = useState<RenderErrorProps>({
@@ -59,6 +57,7 @@ export default function AccountCreation(componentSetter: ComponentProps) {
     }
   }
 
+  // Data submission handler
   const accountCreationSbumit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
@@ -91,13 +90,12 @@ export default function AccountCreation(componentSetter: ComponentProps) {
     }
 
     // API call
-    // try{
-    //   const res = await axios.post(`${process.env.NEXT_PUBLIC_URL}:${process.env.NEXT_PUBLIC_BACKEND_PORT}/userRoutes/${process.env.NEXT_PUBLIC_REGISTER}`, registrationData);     
-    //   console.log(res);
-    // } catch (error) {
-    //   console.error(error);
-    // }
-
+    try{
+      const res = await axios.post(`${process.env.NEXT_PUBLIC_URL}:${process.env.NEXT_PUBLIC_BACKEND_PORT}/userRoutes/${process.env.NEXT_PUBLIC_REGISTER}`, registrationData);     
+      console.log(res);
+    } catch (error) {
+      console.error(error);
+    }
   }
 
   const setComponent = (arg: number) => {
@@ -147,7 +145,8 @@ export default function AccountCreation(componentSetter: ComponentProps) {
         <div className={styles.submitButtonAlignment}>
           <SubmitButton 
             buttonProperties={{ 
-              buttonName: 'Submit',
+              buttonName: 'Create Account',
+              disabled: false,
             }}
           />
         </div>

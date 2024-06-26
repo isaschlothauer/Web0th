@@ -4,18 +4,17 @@ interface submitButtonProps {
   // buttonName: string
   buttonProperties: {
     buttonName: string;
-    // disabled: boolean;
+    disabled: boolean;
   }
 }
 
 export default function SubmitButton(props: submitButtonProps) {
-  const { buttonName } = props.buttonProperties;
+  const { buttonName, disabled } = props.buttonProperties;
   return (
     <button
       type="submit"
-      // className={buttonStyles.button}
       className={`${buttonStyles.button}`}
-      // disabled={disabled}
+      disabled={disabled}
     >
       {buttonName}
     </button>
