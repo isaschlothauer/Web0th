@@ -4,7 +4,7 @@ import { database } from "./src/config/database"
 import cors from 'cors';
 import { corsOptions } from './src/config/cors';
 
-import { userRoutes } from './src/routes/userRoutes'
+import routes from './src/routes/routes'
 
 dotenv.config();
 
@@ -36,4 +36,5 @@ app.get("/", (req: Request, res: Response) => {
 })
 
 
-app.use("/userRoutes", userRoutes);
+// app.use("/userRoutes", userRoutes);
+app.use(routes);

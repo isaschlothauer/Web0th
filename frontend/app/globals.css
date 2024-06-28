@@ -5,6 +5,7 @@
   --buttonColor: #0004ff;
   --mainFontColor: #ffff;
   --linkFontColor: #182fff;
+  --ErrorTextColor: rgb(255, 0, 0);
 }
 
 .layoutStyle {

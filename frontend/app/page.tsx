@@ -5,7 +5,7 @@ import dynamic from 'next/dynamic'
 
 // Lazy loading
 const FormInput = dynamic(() => import('./_components/formInput'))
-const AccountCreation = dynamic(() => import('./_components/accountCreation'))
+const AccountCreation = dynamic(() => import('./_components/CreateAccount'))
 const AccountRecovery = dynamic(() => import('./_components/accountRecovery'))
 
 export default function Home() {

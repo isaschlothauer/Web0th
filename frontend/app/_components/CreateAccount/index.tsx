@@ -21,7 +21,11 @@ interface RenderErrorProps {
   password: number;
 }
 
-export default function AccountCreation(componentSetter: ComponentProps) {
+interface ErrorProps {
+  message: string;
+}
+
+export default function CreateAccount(componentSetter: ComponentProps) {
   const [registrationData, setRegistrationData] = useState<AccountRegistrationProps>({
     email: '',
     password: '',
@@ -32,6 +36,8 @@ export default function AccountCreation(componentSetter: ComponentProps) {
     email: false,
     password: 1,
   })
+
+  const [ validationFailureMsg, setValidationFailureMsg ] = useState<ErrorProps[]>([])
 
   // Input data state handler
   const handleInputChange = (label: string, value: string) => {
@@ -57,6 +63,9 @@ export default function AccountCreation(componentSetter: ComponentProps) {
   // Data submission handler
   const accountCreationSbumit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+
+    // Clear previous backend error messages
+    setValidationFailureMsg([]);
 
     // Frontend email format check. Following state renders the error message or not. 
     if (emailVerification(registrationData.email) !== true) {
@@ -89,12 +98,33 @@ export default function AccountCreation(componentSetter: ComponentProps) {
     // API call
     if (renderErrorMsg.email == false && passwordMatchVerification == 0) {
       try{
-        const res = await axios.post(`${process.env.NEXT_PUBLIC_URL}:${process.env.NEXT_PUBLIC_BACKEND_PORT}/userRoutes/${process.env.NEXT_PUBLIC_REGISTER}`, registrationData);     
+        const res = await axios.post(`${process.env.NEXT_PUBLIC_URL}:${process.env.NEXT_PUBLIC_BACKEND_PORT}/api/${process.env.NEXT_PUBLIC_REGISTER}`, registrationData);     
+
+        // setRegistrationData(registrationData);
+        // console.log(registrationData)
+
         console.log(res);
-      } catch (error) {
+      } catch (error: any) {
         console.error(error);
+        if (error.response.data.errors) {
+          const errorMsgs: ErrorProps[] = error.response.data.errors.map((err: any) => ({ message: err }));
+          console.log(error)
+          setValidationFailureMsg(errorMsgs);
+        } else {
+          console.error(error);
+        }
       }
     }
+  }
+
+  const errorTextsHandler = () => {
+    return (
+      <ul className={styles.errorMsgsUL}>
+        {validationFailureMsg.map((element, index) => (
+          <li key={index} className={styles.errorMsgList}>* {element.message}</li>
+        ))}
+      </ul>
+    )
   }
 
   const setComponent = (arg: number) => {
@@ -128,6 +158,8 @@ export default function AccountCreation(componentSetter: ComponentProps) {
                 </li>
               ))}
             </ul>
+            {errorTextsHandler()}
+
           </div>
         </div>
 
