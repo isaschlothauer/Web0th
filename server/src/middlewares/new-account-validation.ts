@@ -24,15 +24,13 @@ export const newAccountValidation = async (req: Request, res: Response, next: Ne
 
   try {
     const value = await schema.validateAsync(req.body, { abortEarly: false });
-    console.log(value);
 
-    // res.status(200).send("test")
+    // Removing passwordConfirm
+    delete req.body['passwordConfirm'];
+    
     next();
-
   } catch (err: any) {
     const errorDetails = err.details.map((detail: {message: string})  => detail.message)
-
-    console.error(errorDetails);
 
     return res.status(400).json({errors: errorDetails});
   }
