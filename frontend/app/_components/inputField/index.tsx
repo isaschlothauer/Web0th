@@ -8,13 +8,14 @@ interface InputPropTypes {
     required: boolean;
     type: string;
     label: string; 
+    value: string;
     input: string;
   }
   onInputChange: (label: string, value: string) => void;
 }
 
 export default function InputField(props: InputPropTypes) {
-  const { input, label, type, required } = props.inputProps;
+  const { input, label, type, required, value } = props.inputProps;
   const { onInputChange } = props;
 
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
@@ -37,6 +38,7 @@ export default function InputField(props: InputPropTypes) {
             name={label} 
             className={styles.inputFieldStyles} 
             type={type} 
+            value={value}
             onChange={handleChange} 
             required={required}
           />

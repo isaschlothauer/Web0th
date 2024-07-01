@@ -108,8 +108,14 @@
 .errorMsgList {
   font-size: 0.8em;
   color: var(--ErrorTextColor);
+  /* text-align: center; */
 }
 
+.newAccountMsg {
+  text-align: center;
+  font-size: 0.8em;
+  color: var();
+}
 
 
 

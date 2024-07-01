@@ -85,6 +85,7 @@ export default function FormInput(componentSetter: ComponentProps) {
                       input: element.input,
                       label: element.label,
                       type: element.type,
+                      value: element.label
                     }}
                     onInputChange={handleInputChange}
                   />

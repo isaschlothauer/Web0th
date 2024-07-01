@@ -1,4 +1,5 @@
 export interface FormDataInputProps {
+  value: string;
   id: number;
   input: string;
   label: string;
@@ -11,7 +12,8 @@ export const accountRegistrationInputArray: FormDataInputProps[] = [
     id: 0,
     input: "Email",
     label: "email",
-    type: "text",
+    type: "text", 
+    value: "",
     required: true,
   },
   {
@@ -19,6 +21,7 @@ export const accountRegistrationInputArray: FormDataInputProps[] = [
     input: "Password",
     label: "password",
     type: "password",
+    value: "",
     required: true,
   },
   {
@@ -26,6 +29,7 @@ export const accountRegistrationInputArray: FormDataInputProps[] = [
     input: "Re-type Password",
     label: "passwordConfirm",
     type: "password",
+    value: "",
     required: true,
   }
 ]

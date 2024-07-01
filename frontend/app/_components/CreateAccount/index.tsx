@@ -32,12 +32,17 @@ export default function CreateAccount(componentSetter: ComponentProps) {
     passwordConfirm: '',
   })
 
+  // Error msg trigger
   const [ renderErrorMsg, setRenderErrorMsg ] = useState<RenderErrorProps>({
     email: false,
     password: 1,
   })
 
+  // Backend error msgs
   const [ validationFailureMsg, setValidationFailureMsg ] = useState<ErrorProps[]>([])
+
+  // Msg for new account creation
+  const [ successMsg, setSuccessMsg] = useState<string>('');
 
   // Input data state handler
   const handleInputChange = (label: string, value: string) => {
@@ -100,18 +105,40 @@ export default function CreateAccount(componentSetter: ComponentProps) {
       try{
         const res = await axios.post(`${process.env.NEXT_PUBLIC_URL}:${process.env.NEXT_PUBLIC_BACKEND_PORT}/api/${process.env.NEXT_PUBLIC_REGISTER}`, registrationData);     
 
-        // setRegistrationData(registrationData);
-        // console.log(registrationData)
+        if (res.data.success === true) {
+          setRegistrationData({
+            email: "",
+            password: "",
+            passwordConfirm: ""
+          })
+        }
 
-        console.log(res);
+        // Clear error texts
+        setValidationFailureMsg([]);
+
+        setSuccessMsg(res.data.message);
+        setTimeout(() => {
+          setSuccessMsg('');
+          setComponent(2);
+        }, 2500)
       } catch (error: any) {
-        console.error(error);
-        if (error.response.data.errors) {
-          const errorMsgs: ErrorProps[] = error.response.data.errors.map((err: any) => ({ message: err }));
-          console.log(error)
+
+        const errorMsg = error.response;
+
+        if (errorMsg.data.success == false) {
+
+          setValidationFailureMsg(prevState => {
+            return [...prevState, { message: errorMsg.data.error }];
+
+          })
+        } else if (errorMsg.data.errors) {
+
+          const errorMsgs: ErrorProps[] = errorMsg.data.errors.map((err: any) => ({ message: err }));
+        //   // console.log(error)
           setValidationFailureMsg(errorMsgs);
-        } else {
-          console.error(error);
+
+        } else{
+          console.error("Account creation errors: ", errorMsg);
         }
       }
     }
@@ -144,12 +171,12 @@ export default function CreateAccount(componentSetter: ComponentProps) {
               {/* Input field mapping */}
               {accountRegistrationInputArray.map((item) => (
                 <li key={item.id} className={styles.listStyles}>
-                  {/* <div className={styles.listAlignment}> */}
                     <InputField inputProps={{
                         required:item.required,
                         input: item.input,
                         label: item.label,
                         type: item.type,
+                        value: registrationData[item.label as keyof AccountRegistrationProps],
                       }}
                       onInputChange={handleInputChange}
                     />
@@ -159,6 +186,7 @@ export default function CreateAccount(componentSetter: ComponentProps) {
               ))}
             </ul>
             {errorTextsHandler()}
+            <p className={styles.newAccountMsg}>{successMsg}</p>
 
           </div>
         </div>
