@@ -171,17 +171,17 @@ export default function CreateAccount(componentSetter: ComponentProps) {
               {/* Input field mapping */}
               {accountRegistrationInputArray.map((item) => (
                 <li key={item.id} className={styles.listStyles}>
-                    <InputField inputProps={{
-                        required:item.required,
-                        input: item.input,
-                        label: item.label,
-                        type: item.type,
-                        value: registrationData[item.label as keyof AccountRegistrationProps],
-                      }}
-                      onInputChange={handleInputChange}
-                    />
-                    {((item.id === 0 && renderErrorMsg.email) && renderErrorMsg.email) && <p className={styles.invalidEmailAddressMsgInvisible}>* Please provide valid email address</p>}
-                    {(item.id === 2 && renderErrorMsg.password === 0) && <p className={styles.invalidEmailAddressMsgInvisible}>* Password mismatch</p>}
+                  <InputField inputProps={{
+                      required:item.required,
+                      input: item.input,
+                      label: item.label,
+                      type: item.type,
+                      value: registrationData[item.label as keyof AccountRegistrationProps],
+                    }}
+                    onInputChange={handleInputChange}
+                  />
+                  {((item.id === 0 && renderErrorMsg.email) && renderErrorMsg.email) && <p className={styles.invalidEmailAddressMsgInvisible}>* Please provide valid email address</p>}
+                  {(item.id === 2 && renderErrorMsg.password === 0) && <p className={styles.invalidEmailAddressMsgInvisible}>* Password mismatch</p>}
                 </li>
               ))}
             </ul>

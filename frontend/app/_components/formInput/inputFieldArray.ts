@@ -4,6 +4,7 @@ export interface FormDataInputProps {
   label: string;
   type: string;
   required: boolean;
+  value: string
 }
 
 export const formDataInputs: FormDataInputProps[] = [
@@ -13,6 +14,7 @@ export const formDataInputs: FormDataInputProps[] = [
     label: "email",
     type: "text",
     required: true,
+    value: ""
   },
   {
     id: 1,
@@ -20,5 +22,6 @@ export const formDataInputs: FormDataInputProps[] = [
     label: "password",
     type: "password",
     required: true,
+    value: ""
   }
 ]

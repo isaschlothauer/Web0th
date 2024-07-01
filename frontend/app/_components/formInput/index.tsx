@@ -3,8 +3,8 @@
 import React, { ChangeEvent, useState, useEffect } from 'react';
 import styles from './index.module.css'
 import { formDataInputs } from './inputFieldArray'
+import { FormDataInputProps } from './inputFieldArray'
 import InputField from '../inputField';
-
 
 import axios, {isCancel, AxiosError} from 'axios';
 
@@ -18,12 +18,11 @@ export interface ComponentProps {
   componentSetter: (compId: number)=> void;
 }
 
-
 export default function FormInput(componentSetter: ComponentProps) {
   const [formData, setFormData] = useState<FormDataProps>({
     email: '',
     password: '',
-    rememberId: false
+    rememberId: false,
   })
 
   // Input data state handler
@@ -42,19 +41,22 @@ export default function FormInput(componentSetter: ComponentProps) {
     })))
   }
 
-  const loginSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+  const loginSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
     // API call
-    console.log()
+    console.log(formData);
+
+    try {
+      const res = await axios.post(`${process.env.NEXT_PUBLIC_URL}:${process.env.NEXT_PUBLIC_BACKEND_PORT}/api/${process.env.NEXT_PUBLIC_LOGIN}`, formData);    
+    }
+    catch (err) {
+      console.error(err);
+    }
+
   }
 
-  const clearInput = (field: keyof FormDataProps) => {
-    setFormData(prevState => ({
-      ...prevState,
-      [field]: ''
-    }));
-  }
+
 
   const setComponent = (arg: number) => {
     componentSetter.componentSetter(arg);
@@ -80,32 +82,16 @@ export default function FormInput(componentSetter: ComponentProps) {
               {/* Input field mapping */}
               {formDataInputs.map((element) => (
                 <li key={element.id} className={styles.listStyles}>
-                  <InputField inputProps={{
-                      required:element.required,
+                  <InputField
+                    inputProps={{
+                      required: element.required,
                       input: element.input,
                       label: element.label,
                       type: element.type,
-                      value: element.label
+                      value: formData[element.label as keyof FormDataProps] as string,
                     }}
                     onInputChange={handleInputChange}
                   />
-                  {/* <label 
-                    htmlFor={element.label} 
-                    className={styles.inputFieldLabel} 
-                  >
-                    {element.input}
-                  </label>
-
-                  <div className={styles.inputClearContainer}>
-                    <input 
-                      id={element.label}  
-                      name={element.label} 
-                      className={styles.inputFieldStyles} 
-                      type={element.type} value={formData[element.label as keyof FormDataProps] as string} 
-                      onChange={handleInputChange} 
-                      required={element.required}
-                    />
-                  </div> */}
                 </li>
               ))}
             </ul>

@@ -1,8 +1,6 @@
 import { ChangeEvent } from "react";
 import styles from "./index.module.css"
 
-
-
 interface InputPropTypes {
   inputProps: {
     required: boolean;
