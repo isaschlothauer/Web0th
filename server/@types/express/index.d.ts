@@ -14,3 +14,9 @@ export interface UserDataProps {
 export interface UserDuplicateCheckProps extends RowDataPacket {
   login: string;
 }
+
+export interface LoginValueProps {
+  email: string;
+  password: string;
+  rememberId: boolean;
+}

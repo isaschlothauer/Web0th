@@ -1,6 +1,7 @@
 import { Router, Request, Response } from 'express';
 import accountCreationController from './accountCreation/account-creation.controller'
 import { newAccountValidation } from '../middlewares/new-account-validation';
+import { loginInputValidation } from '../middlewares/login-validation'
 
 // const api = Router()
 //   .use(accountCreationController)
@@ -18,6 +19,7 @@ import { newAccountValidation } from '../middlewares/new-account-validation';
   //   .use(accountCreationController);
 
   const api = Router()
-    .use('/register', newAccountValidation, accountCreationController);
+    .use('/register', newAccountValidation, accountCreationController)
+    .use('/login', loginInputValidation);
 
   export default Router().use('/api', api);
