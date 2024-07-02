@@ -49,6 +49,8 @@ export default function FormInput(componentSetter: ComponentProps) {
 
     try {
       const res = await axios.post(`${process.env.NEXT_PUBLIC_URL}:${process.env.NEXT_PUBLIC_BACKEND_PORT}/api/${process.env.NEXT_PUBLIC_LOGIN}`, formData);    
+
+      console.log(res);
     }
     catch (err) {
       console.error(err);

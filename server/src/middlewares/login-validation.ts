@@ -13,13 +13,9 @@ export const loginInputValidation = async (req: Request, res: Response, next: Ne
   try {
     const loginInput = await inputSchema.validateAsync(req.body, { abortEarly: false });
 
-    console.log(loginInput);
     next();
   }
   catch (err) {
-    console.error(err);
-
     return res.status(400).json({ error: err})
   }
-
 }
