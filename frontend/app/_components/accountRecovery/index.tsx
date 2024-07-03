@@ -1,6 +1,6 @@
 "use client"
 
-import React, { ChangeEvent, useState, useEffect } from 'react';
+import { ChangeEvent, useState, useEffect } from 'react';
 import styles from './index.module.css'
 import { accountRecoveryInputArray } from './accountRecoveryInputArray'
 import SubmitButton from '../formSubmitButton'

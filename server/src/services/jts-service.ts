@@ -16,7 +16,6 @@ export const jwtGenerator = async (loginData: LoginValueProps) => {
     signed: false,
   }
 
-  console.log(cookieOptions)
   if (!jwtSecret || !loginData) {
     return { success: false, error: "No JWT Secret or Login data"}
   }
@@ -31,7 +30,7 @@ export const jwtGenerator = async (loginData: LoginValueProps) => {
   try {
     const tokenOptions: { authToken: string; options: CookieOptionProps } = { authToken: token, options: cookieOptions };
 
-    return tokenOptions
+    return tokenOptions;
   }
   catch (err) {
     return { success: false, error: "Error generating token" };

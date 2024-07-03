@@ -1,10 +1,12 @@
 "use client"
 
-import React, { ChangeEvent, useState, useEffect } from 'react';
+import { ChangeEvent, useState, useEffect } from 'react';
 import styles from './index.module.css'
 import { formDataInputs } from './inputFieldArray'
 import { FormDataInputProps } from './inputFieldArray'
 import InputField from '../inputField';
+import { useRouter } from 'next/navigation';
+
 
 import axios, {isCancel, AxiosError} from 'axios';
 
@@ -47,7 +49,7 @@ export default function FormInput(componentSetter: ComponentProps) {
     })))
   }
 
-
+  const router = useRouter();
 
   const responseMsgRender = () => {
     return (
@@ -61,26 +63,32 @@ export default function FormInput(componentSetter: ComponentProps) {
 
     // API call
     try {
-      const res = await axios.post(`${process.env.NEXT_PUBLIC_URL}:${process.env.NEXT_PUBLIC_BACKEND_PORT}/api/${process.env.NEXT_PUBLIC_LOGIN}`, formData, {withCredentials: true});    
+      await axios.post(`${process.env.NEXT_PUBLIC_URL}:${process.env.NEXT_PUBLIC_BACKEND_PORT}/api/${process.env.NEXT_PUBLIC_LOGIN}`, formData, {withCredentials: true})
+      .then((res: any) => {
 
-      if (res) {
-        Object.keys(formData).forEach((key: string) => {
-          setFormData(prevState => ({...prevState, [key]: "" }))
-        })
+        // Object.keys(formData).forEach((key: string) => {
+        //   setFormData(prevState => ({...prevState, [key]: "" }))
+        
+        // setFormData(prevState => ({ ...prevState, rememberId: false}))
+        // })
 
-        const responsePath = res.data;
+        // const responsePath = res.data;
 
-        setStatusMsg(responsePath.message + ". Redirecting...");
+        // setStatusMsg(responsePath.message + ". Redirecting...");
 
-        setTimeout(() => {
-          setStatusMsg('');
-        }, 2500)
-
-        // Direct to the logged in page;
-      }
+        // Clear login message, redirect to dashboard page
+        // setTimeout(() => {
+        //   setStatusMsg('');
+        //   res.status === 200 && router.push('/dashboard');
+        // }, 500)
+      });    
     }
-    catch (err) {
-      console.error(err);
+    catch (err: any) {
+      setStatusMsg(err.response.data.error);
+
+      setTimeout(() => {
+        setStatusMsg('');
+      }, 3000)
     }
   }
 

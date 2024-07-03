@@ -1,6 +1,6 @@
 "use client"
 
-import React, { useState } from 'react';
+import { useState } from 'react';
 import styles from './index.module.css'
 import { accountRegistrationInputArray } from './accountRegistrationInputArray'
 import SubmitButton from '../formSubmitButton'
@@ -117,10 +117,13 @@ export default function CreateAccount(componentSetter: ComponentProps) {
         setValidationFailureMsg([]);
 
         setSuccessMsg(res.data.message);
+
+        // Message and redirect delay. 2 sec
         setTimeout(() => {
           setSuccessMsg('');
           setComponent(2);
-        }, 2500)
+        }, 2000)
+
       } catch (error: any) {
 
         const errorMsg = error.response;
