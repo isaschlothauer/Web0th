@@ -18,12 +18,18 @@ export interface ComponentProps {
   componentSetter: (compId: number)=> void;
 }
 
+export interface ResponsePathProps {
+  path: string; 
+}
+
 export default function FormInput(componentSetter: ComponentProps) {
   const [formData, setFormData] = useState<FormDataProps>({
     email: '',
     password: '',
     rememberId: false,
   })
+
+  const [ statusMsg, setStatusMsg ] = useState<string>('');
 
   // Input data state handler
   const handleInputChange = (label: string, value: string) => {
@@ -41,24 +47,42 @@ export default function FormInput(componentSetter: ComponentProps) {
     })))
   }
 
+
+
+  const responseMsgRender = () => {
+    return (
+      <p>{statusMsg}</p>
+    )
+  }
+
   const loginSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
+
     // API call
-    console.log(formData);
-
     try {
-      const res = await axios.post(`${process.env.NEXT_PUBLIC_URL}:${process.env.NEXT_PUBLIC_BACKEND_PORT}/api/${process.env.NEXT_PUBLIC_LOGIN}`, formData);    
+      const res = await axios.post(`${process.env.NEXT_PUBLIC_URL}:${process.env.NEXT_PUBLIC_BACKEND_PORT}/api/${process.env.NEXT_PUBLIC_LOGIN}`, formData, {withCredentials: true});    
 
-      console.log(res);
+      if (res) {
+        Object.keys(formData).forEach((key: string) => {
+          setFormData(prevState => ({...prevState, [key]: "" }))
+        })
+
+        const responsePath = res.data;
+
+        setStatusMsg(responsePath.message + ". Redirecting...");
+
+        setTimeout(() => {
+          setStatusMsg('');
+        }, 2500)
+
+        // Direct to the logged in page;
+      }
     }
     catch (err) {
       console.error(err);
     }
-
   }
-
-
 
   const setComponent = (arg: number) => {
     componentSetter.componentSetter(arg);
@@ -105,6 +129,7 @@ export default function FormInput(componentSetter: ComponentProps) {
               type="checkbox" 
               id="rememberId" 
               name="rememberId" 
+              checked={formData.rememberId} 
               onChange={handleCheckbox} 
             />
             <label htmlFor="rememberId" className={styles.checkboxLabel}>
@@ -113,6 +138,7 @@ export default function FormInput(componentSetter: ComponentProps) {
           </div> 
         </div>
 
+        <div className={styles.statusMsg}>{responseMsgRender()}</div>
         {/* Submit button */}
         <div className={styles.submitButtonAlignment}>
           <button type="submit" className={styles.submitButton}>Sign In</button>

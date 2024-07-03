@@ -30,17 +30,16 @@ export default function InputField(props: InputPropTypes) {
         >
           {input}
         </label>
-
-          <input 
-            id={label}  
-            name={label} 
-            className={styles.inputFieldStyles} 
-            type={type} 
-            value={value}
-            onChange={handleChange} 
-            required={required}
-          />
-        </div>
+        <input 
+          id={label}  
+          name={label} 
+          className={styles.inputFieldStyles} 
+          type={type} 
+          value={value}
+          onChange={handleChange} 
+          required={required}
+        />
+      </div>
     </>
   )
 }

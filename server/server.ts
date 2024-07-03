@@ -3,12 +3,14 @@ import dotenv from 'dotenv';
 import { database } from "./src/config/database"
 import cors from 'cors';
 import { corsOptions } from './src/config/cors';
+import cookieParser from 'cookie-parser'
 
 import routes from './src/routes/routes'
 
 dotenv.config();
 
 const app: Express = express()
+app.use(cookieParser());
 app.use( cors(corsOptions) );
 app.use(express.json());
 
