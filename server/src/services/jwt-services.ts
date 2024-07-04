@@ -9,7 +9,7 @@ export const jwtGenerator = async (loginData: LoginValueProps) => {
 
   // Cookie options
   const cookieOptions: CookieOptionProps = {
-    maxAge: rememberId? Math.floor(Date.now() / 1000) + (60 * 60): undefined, // expire after 1 hour
+    maxAge: rememberId? Math.floor(Date.now() / 1000) + (60 * 60): undefined, // Expire after 1 hour. Session or persisitent login status. 
     httpOnly: true, // Cookie will not be exposed to client side code
     sameSite: "none", // If client and server origins are different
     secure: true, // use with HTTPS only
@@ -43,7 +43,8 @@ export const jwtVerify = async (token: any) => {
     if (jwtSecret && token) {
         const verified: any = jwt.verify(token, jwtSecret)
 
-        return { success: false, message: "Token verified" }
+        console.log(verified);
+        return { success: true, message: "Token verified" }
     }
 
   }

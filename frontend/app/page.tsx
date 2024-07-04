@@ -22,13 +22,11 @@ export default function Home () {
 
   const router = useRouter();
 
-  // const { loginStatus } = useContext(LoginContext);
-  // const { isLoggedIn, setIsLoggedIn } = loginStatus;
   const { isLoggedIn, setIsLoggedIn } = useContext(LoginContext)
 
   useEffect(() => {
     // Redirect to dashboard after verification
-    isLoggedIn && router.push('/dashboard');
+    isLoggedIn && router.push('/dashboard')
 
     if (!isLoggedIn) {
       const loginStatusCheck = async () => {
@@ -40,19 +38,23 @@ export default function Home () {
               'Content-Type': 'application/cookie'
               }
             })
-          
-          !isLoggedIn && setIsLoggedIn(true)
+
+            if (response.status === 200) 
+              setIsLoggedIn(true)
+            else
+              setIsLoggedIn(false) ;
         }
         catch (err) {
-          // console.error(err);
-          // User not logged in
+          console.error("Home error: ", err);
         }
       } 
       loginStatusCheck();
     }
+  },[isLoggedIn, router, setIsLoggedIn])
+
+  useEffect(() => {  //   // isLoggedIn && router.push('/dashboard');
+    isLoggedIn && router.push('/dashboard')
   })
-
-
 
   // Component ID: 
   // 0: Account Creation

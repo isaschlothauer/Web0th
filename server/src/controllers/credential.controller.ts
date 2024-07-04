@@ -13,7 +13,7 @@ router.get('/', async (req: Request, res: Response) => {
     // Verification response
     if (verified == undefined) 
       return res.status(400).send({ success: false, error: "Not authenticated"});
-    else if (verified.success === true) 
+    else if (verified.success === false) 
       return res.status(401).send(verified)
     else
       return res.status(200).send(verified);
