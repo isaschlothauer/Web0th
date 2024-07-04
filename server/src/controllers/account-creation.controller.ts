@@ -44,7 +44,7 @@ router.post("/", async (req: Request, res:Response) => {
   if (databaseInsertResult === false) 
     return res.status(400).send({ success: false, error: "Error. Unable to create a new account" })
   else
-    return res.status(200).send({ success: true, message: "New account created" });
+    return res.status(201).send({ success: true, message: "New account created" });
 })
 
 export default router;

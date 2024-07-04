@@ -27,20 +27,25 @@ export default function Home () {
   const { isLoggedIn, setIsLoggedIn } = useContext(LoginContext)
 
   useEffect(() => {
+    // Redirect to dashboard after verification
+    isLoggedIn && router.push('/dashboard');
+
     if (!isLoggedIn) {
       const loginStatusCheck = async () => {
         try {
-          const response = await axios.get(`${process.env.NEXT_PUBLIC_URL}:${process.env.NEXT_PUBLIC_BACKEND_PORT}/api/protected/${process.env.NEXT_PUBLIC_USERAUTH}`, 
+          const response = await axios.get(`${process.env.NEXT_PUBLIC_URL}:${process.env.NEXT_PUBLIC_BACKEND_PORT}/api/${process.env.NEXT_PUBLIC_USERAUTH}`, 
             {withCredentials: true,
             headers: {
               'Access-Control-Allow-Origin': '*', 
               'Content-Type': 'application/cookie'
               }
             })
-          console.log(response)
+          
+          !isLoggedIn && setIsLoggedIn(true)
         }
         catch (err) {
-          console.error(err);
+          // console.error(err);
+          // User not logged in
         }
       } 
       loginStatusCheck();
@@ -52,7 +57,7 @@ export default function Home () {
   // Component ID: 
   // 0: Account Creation
   // 1: Account Recovery
-  // others: Form Input
+  // 2: Form Input
   function handleComponentChange(compId: number) {
     switch (compId) {
       case 0:

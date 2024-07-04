@@ -66,21 +66,21 @@ export default function FormInput(componentSetter: ComponentProps) {
       await axios.post(`${process.env.NEXT_PUBLIC_URL}:${process.env.NEXT_PUBLIC_BACKEND_PORT}/api/${process.env.NEXT_PUBLIC_LOGIN}`, formData, {withCredentials: true})
       .then((res: any) => {
 
-        // Object.keys(formData).forEach((key: string) => {
-        //   setFormData(prevState => ({...prevState, [key]: "" }))
+        Object.keys(formData).forEach((key: string) => {
+          setFormData(prevState => ({...prevState, [key]: "" }))
         
-        // setFormData(prevState => ({ ...prevState, rememberId: false}))
-        // })
+        setFormData(prevState => ({ ...prevState, rememberId: false}))
+        })
 
-        // const responsePath = res.data;
+        const responsePath = res.data;
 
-        // setStatusMsg(responsePath.message + ". Redirecting...");
+        setStatusMsg(responsePath.message + ". Redirecting...");
 
         // Clear login message, redirect to dashboard page
-        // setTimeout(() => {
-        //   setStatusMsg('');
-        //   res.status === 200 && router.push('/dashboard');
-        // }, 500)
+        setTimeout(() => {
+          setStatusMsg('');
+          res.status === 200 && router.push('/dashboard');
+        }, 500)
       });    
     }
     catch (err: any) {
