@@ -1,7 +1,8 @@
 import buttonStyles from './index.module.css'
 
 interface submitButtonProps {
-  buttonName: string
+  buttonName: string,
+  disabled?: boolean
   // buttonProperties: {
   //   buttonName: string;
   //   disabled: boolean;

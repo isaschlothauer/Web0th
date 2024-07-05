@@ -5,9 +5,9 @@ import { LoginContext } from '../contexts/loginContext';
 import { useRouter } from 'next/navigation';
 
 export default function Dashboard () {
-  const { isLoggedIn, setIsLoggedIn } = useContext(LoginContext)
-  let loggedInStatus = useRef(false);
-  // useRef keeps track of logged in status even through component remount. 
+  const { isLoggedIn, setIsLoggedIn } = useContext(LoginContext);
+
+  let loggedInStatus = useRef(false); // useRef keeps track of logged in status even through component remount. 
   
   const router = useRouter();
 
@@ -23,7 +23,6 @@ export default function Dashboard () {
     }
   })
 
-
   useEffect(() => {
     if (loggedInStatus.current == false)
       router.push('/');
@@ -32,16 +31,10 @@ export default function Dashboard () {
   const testFunc = () => {
     setIsLoggedIn(false);
   }
-  // if (isLoggedIn == false)
-  //   router.push('/');
-
-  // useEffect(() => {
-  //   console.log("isLoggedIn", isLoggedIn);
-  // }, [isLoggedIn])
 
   return (
     <>
-    {isLoggedIn && <div>
+    {isLoggedIn? <div>
         <p>Hello</p>
         <button
           type="button"
@@ -50,7 +43,9 @@ export default function Dashboard () {
           Test
         </button>
       
-      </div>}
+      </div>
+      : 
+      <div>...loading</div>}
       
     </>
   )

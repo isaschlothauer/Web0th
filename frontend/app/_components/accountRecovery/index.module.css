@@ -81,6 +81,13 @@
   margin: 0 auto 0 auto;
 }
 
+.inputDisabled {
+  text-align: center;
+  font-size: 0.8em;
+  margin-top: 1em;
+  color: var(--ErrorTextColor);
+}
+
 @media screen and (min-width: 600px) {
   .signInContainerText {
     font-weight: 400;

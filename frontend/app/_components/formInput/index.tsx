@@ -3,7 +3,6 @@
 import { ChangeEvent, useState, useEffect } from 'react';
 import styles from './index.module.css'
 import { formDataInputs } from './inputFieldArray'
-import { FormDataInputProps } from './inputFieldArray'
 import InputField from '../inputField';
 import { useRouter } from 'next/navigation';
 
@@ -59,7 +58,6 @@ export default function FormInput(componentSetter: ComponentProps) {
 
   const loginSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-
 
     // API call
     try {

@@ -8,6 +8,6 @@ import { loginInputValidation } from '../middlewares/login-validation'
 const api = Router()
   .use('/register', newAccountValidation, accountCreationController)
   .use('/login', loginInputValidation, loginController)
-  .use('/userAuth', credentialController);
+  .use('/userAuth', credentialController)
 
 export default Router().use('/api', api);

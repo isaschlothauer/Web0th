@@ -1,10 +1,8 @@
 import { Router, Request, Response } from 'express';
-import { CreateAccountProps, UserDataProps, UserDuplicateCheckProps } from "../../@types/express/index"
-
+import { CreateAccountProps, UserDuplicateCheckProps } from "../../@types/express/index"
 import { hashPassword } from '../services/password-hashing';
 import { loginDuplicateCheck } from '../services/login-duplicate-check';
 import { newAccountDatabaseInsert } from '../services/new-account-database-insert'
-import { QueryResult } from 'mysql2';
 
 const router = Router();
 

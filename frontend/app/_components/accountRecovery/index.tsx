@@ -1,9 +1,11 @@
 "use client"
 
-import { ChangeEvent, useState, useEffect } from 'react';
+import { useState } from 'react';
 import styles from './index.module.css'
 import { accountRecoveryInputArray } from './accountRecoveryInputArray'
 import SubmitButton from '../formSubmitButton'
+import InputField from '../inputField';
+import axios from 'axios';
 
 import { ComponentProps } from '../formInput';
 
@@ -11,30 +13,32 @@ interface AccountRecoveryProps {
   email: string;
 }
 
-interface submitButtonProps {
-  registrationCancel: ()=> void;
-}
-
 export default function AccountRecovery (componentSetter: ComponentProps) {
-  const [accountRecovery, setAccountRecovery] = useState<AccountRecoveryProps>({
+  const [ accountRecoveryData, setAccountRecoveryData ] = useState<AccountRecoveryProps>({
     email: '',
   })
 
   // Input data state handler
-  const handleInputChange = (e: ChangeEvent<HTMLInputElement>) => {
-    const { name, value } = e.target;
-    setAccountRecovery((prevState => ({
+  const handleInputChange = (label: string, value: string) => {
+    setAccountRecoveryData((prevState => ({
       ...prevState,
-      [name]: value,
+      [label]: value,
     })))
   }
 
-  const accountCreationSbumit = (e: React.FormEvent<HTMLFormElement>) => {
+  const accountRecoveryFOrmSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
     // API call
-    console.log("AccRec: ", accountRecovery)
+    try {  
+      // ..... //
+      console.log("This functionality is currently unimplemented")
+    }
+    catch (err: any) {
+      console.error(err);
+    }
   }
+  
 
   const setComponent = (arg: number) => {
     componentSetter.componentSetter(arg);
@@ -42,7 +46,7 @@ export default function AccountRecovery (componentSetter: ComponentProps) {
   
   return (
     <>
-      <form onSubmit={accountCreationSbumit}>
+      <form onSubmit={accountRecoveryFOrmSubmit}>
         <div className={styles.form}>
           <div className={styles.formContentStyles}>
             <div className={styles.signInContainerText}>
@@ -53,21 +57,17 @@ export default function AccountRecovery (componentSetter: ComponentProps) {
               {/* Input field mapping */}
               {accountRecoveryInputArray.map((item) => (
                 <li key={item.id} className={styles.listStyles}>
-                  <label 
-                    htmlFor={item.label} 
-                    className={styles.inputFieldLabel} 
-                  >
-                    {item.input}
-                  </label>
-
                   <div className={styles.inputClearContainer}>
-                    <input 
-                      id={item.label}  
-                      name={item.label} 
-                      className={styles.inputFieldStyles} 
-                      type={item.type} value={accountRecovery[item.label as keyof AccountRecoveryProps] as string} 
-                      onChange={handleInputChange} 
-                      required={item.required}
+                    <InputField
+                      inputProps={{
+                        required: item.required,
+                        input: item.input,
+                        label: item.label,
+                        type: item.type,
+                        value: accountRecoveryData[item.label as keyof AccountRecoveryProps] as string,
+                        disabled: true
+                      }}
+                      onInputChange={handleInputChange}
                     />
                   </div>
                 </li>
@@ -89,6 +89,7 @@ export default function AccountRecovery (componentSetter: ComponentProps) {
         >
         Cancel
       </button>
+      <p className={styles.inputDisabled}>* Currently account recovery functionality has not been implemented</p>
     </>
   )
 }
