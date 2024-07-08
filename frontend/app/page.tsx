@@ -3,58 +3,47 @@ import styles from "./page.module.css";
 import { ReactNode, useState, useEffect, useContext } from 'react';
 import { useRouter } from 'next/navigation';
 import dynamic from 'next/dynamic'
+import { useExpirationValidator } from './hooks/useExpirationValidator'
 import axios from 'axios';
 
-import { LoginContext } from './contexts/loginContext'
-
 // Lazy loading
-const FormInput = dynamic(() => import('./_components/formInput'))
-const AccountCreation = dynamic(() => import('./_components/createAccount'))
-const AccountRecovery = dynamic(() => import('./_components/accountRecovery'))
+const FormInput = dynamic(() => import('./_components/FormInput'))
+const AccountCreation = dynamic(() => import('./_components/CreateAccount'))
+const AccountRecovery = dynamic(() => import('./_components/AccountRecovery'))
 
-
-const landingAuthorizationCheck = async () => {
-  const tokenVerified = await axios.get(``)
+const getCookieKillOrder = async () => {
+  try {
+    // API query returns res.clearCooie() response and deletes stored cookie
+    await axios.delete(`${process.env.NEXT_PUBLIC_URL}:${process.env.NEXT_PUBLIC_BACKEND_PORT}/api/${process.env.NEXT_PUBLIC_COOKIE}`, 
+      {withCredentials: true,
+      headers: {
+        'Access-Control-Allow-Origin': '*', 
+        'Content-Type': 'application/cookie'
+        }
+      })
+  }
+  catch (err: any) {
+    // console.error("Home error: ", err);
+    return err;
+  }
 }
 
 export default function Home () {
   const [ renderLoginComponent, setRenderLoginComponent ] = useState<ReactNode>(<FormInput componentSetter={handleComponentChange} />)
 
   const router = useRouter();
-
-  const { isLoggedIn, setIsLoggedIn } = useContext(LoginContext)
+  const authenticationState : any = useExpirationValidator();
 
   useEffect(() => {
-    // Redirect to dashboard after verification
-    isLoggedIn && router.push('/dashboard')
-
-    if (!isLoggedIn) {
-      const loginStatusCheck = async () => {
-        try {
-          const response = await axios.get(`${process.env.NEXT_PUBLIC_URL}:${process.env.NEXT_PUBLIC_BACKEND_PORT}/api/${process.env.NEXT_PUBLIC_USERAUTH}`, 
-            {withCredentials: true,
-            headers: {
-              'Access-Control-Allow-Origin': '*', 
-              'Content-Type': 'application/cookie'
-              }
-            })
-
-            if (response.status === 200) 
-              setIsLoggedIn(true)
-            else
-              setIsLoggedIn(false) ;
-        }
-        catch (err) {
-          console.error("Home error: ", err);
-        }
-      } 
-      loginStatusCheck();
+    if (authenticationState && authenticationState.status === 200) {
+      router.push('/dashboard');
+    } else {
+      getCookieKillOrder()
     }
-  },[isLoggedIn, router, setIsLoggedIn])
-
-  useEffect(() => {  //   // isLoggedIn && router.push('/dashboard');
-    isLoggedIn && router.push('/dashboard')
-  })
+    // else {
+    //   getCookieKillOrder();
+    // }
+  });
 
   // Component ID: 
   // 0: Account Creation

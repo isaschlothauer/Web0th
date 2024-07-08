@@ -1,49 +1,54 @@
 'use client'
 
-import { useContext, useEffect, useRef } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import { LoginContext } from '../contexts/loginContext';
 import { useRouter } from 'next/navigation';
+import styles from './index.module.css'
+import { useExpirationValidator } from '../hooks/useExpirationValidator';
 
 export default function Dashboard () {
-  const { isLoggedIn, setIsLoggedIn } = useContext(LoginContext);
+  const [ componentLoader, setComponentLoader ] = useState<boolean | null>(null);
 
-  let loggedInStatus = useRef(false); // useRef keeps track of logged in status even through component remount. 
-  
   const router = useRouter();
+  const authenticationState : any = useExpirationValidator();
 
   useEffect(() => {
-    if (loggedInStatus.current == true && isLoggedIn == false)
-      setIsLoggedIn(true);
+    authenticationState && console.log(authenticationState);
+    if (authenticationState && authenticationState.status === undefined) {
+      setComponentLoader(false);
+      
+      
 
-    if (isLoggedIn)
-      loggedInStatus.current = true;
-    else {
-      loggedInStatus.current = false;
-      setIsLoggedIn(false)
-    }
-  })
-
-  useEffect(() => {
-    if (loggedInStatus.current == false)
       router.push('/');
+    }
+
+    setComponentLoader(true);
   })
+
 
   const testFunc = () => {
-    setIsLoggedIn(false);
   }
+
 
   return (
     <>
-    {isLoggedIn? <div>
-        <p>Hello</p>
-        <button
-          type="button"
-          onClick={testFunc}
-        >
-          Test
-        </button>
+    {componentLoader? 
+      <main className={styles.dashboardContainer}>
+        <div className={styles.centerContainer}>
+          <h1 className={styles.dashboardMainHeader}>Secure page</h1>
+          <article>
+            Hello and welcome. This is a secure page and only way to reach this page is through valid authentication. 
+          </article>
+          <button
+            type="button"
+            onClick={testFunc}
+          >
+            Test
+          </button>
+        </div>
+        
       
-      </div>
+      </main>
       : 
       <div>...loading</div>}
       

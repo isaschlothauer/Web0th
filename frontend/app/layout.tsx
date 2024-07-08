@@ -3,7 +3,6 @@ import type { Metadata } from "next";
 import { Inter, Manrope } from "next/font/google";
 import "./globals.css";
 import Head from "next/head";
-import { LoginContextProvider } from './contexts/loginContext';
 
 const inter = Inter({ subsets: ["latin"] });
 const manrope = Manrope({ subsets: ["latin"] })
@@ -21,9 +20,7 @@ export default function RootLayout({
         <meta name="viewport" content="width=device-width, initial-scale=1" />
       </Head>
       <body className={`${manrope.className} layoutStyle`}>
-        <LoginContextProvider>
-          {children}
-        </LoginContextProvider>
+        {children}
       </body>
     </html>
   );

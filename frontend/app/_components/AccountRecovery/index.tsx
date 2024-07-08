@@ -3,11 +3,11 @@
 import { useState } from 'react';
 import styles from './index.module.css'
 import { accountRecoveryInputArray } from './accountRecoveryInputArray'
-import SubmitButton from '../formSubmitButton'
-import InputField from '../inputField';
+import SubmitButton from '../FormSubmitButton'
+import InputField from '../InputField';
 import axios from 'axios';
 
-import { ComponentProps } from '../formInput';
+import { ComponentProps } from '../FormInput';
 
 interface AccountRecoveryProps {
   email: string;

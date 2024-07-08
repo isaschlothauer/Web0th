@@ -3,10 +3,10 @@
 import { useState } from 'react';
 import styles from './index.module.css'
 import { accountRegistrationInputArray } from './accountRegistrationInputArray'
-import SubmitButton from '../formSubmitButton'
-import { ComponentProps } from '../formInput';
-import InputField from '../inputField';
-import { emailVerification } from '@/app/hooks/emailVerification';
+import SubmitButton from '../FormSubmitButton'
+import { ComponentProps } from '../FormInput';
+import InputField from '../InputField';
+import { emailValidation } from '@/app/hooks/emailValidation';
 
 import axios, {isCancel, AxiosError} from 'axios';
 
@@ -73,7 +73,7 @@ export default function CreateAccount(componentSetter: ComponentProps) {
     setValidationFailureMsg([]);
 
     // Frontend email format check. Following state renders the error message or not. 
-    if (emailVerification(registrationData.email) !== true) {
+    if (emailValidation(registrationData.email) !== true) {
       setRenderErrorMsg(prevState => ({
         ...prevState,
         email: true

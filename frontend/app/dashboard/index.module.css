@@ -1,0 +1,18 @@
+.dashboardContainer {
+  border: 1px dotted red;
+  height: 100vh;
+  background-color: var(--bg-color) ;
+
+}
+
+.centerContainer {
+  border: 1px dotted green;
+  width: 600px;  
+  margin: auto
+}
+
+.dashboardMainHeader {
+  text-align: center;
+  margin-top: 1em;
+  font-weight: 400;
+}

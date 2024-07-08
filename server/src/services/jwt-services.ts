@@ -37,16 +37,14 @@ export const jwtGenerator = async (loginData: LoginValueProps) => {
 }
 
 // JWToken verification
-export const jwtVerify = async (token: any) => {
+export const jwtVerify = async (token: string) => {
   
   try {
     if (jwtSecret && token) {
-        const verified: any = jwt.verify(token, jwtSecret)
+        jwt.verify(token, jwtSecret)
 
-        console.log(verified);
         return { success: true, message: "Token verified" }
     }
-
   }
   catch (err) {
     console.error(err);

@@ -1,9 +1,9 @@
 import { Router, Request, Response } from 'express';
 import { LoginValueProps, AuthTokenProps, ErrorResponseProps } from '../../@types/express/index'
 import { loginUsernameCheck } from '../services/login-username-check';
-import { retrieveUserPasswordHash } from '../services/retriev-user-pass-hash';
+import { retrieveUserPasswordHash } from '../services/retrieve-user-pass-hash';
 import { loginPasswordVerification } from '../services/login-password-verification'
-import { UserDuplicateCheckProps, LoginPasswordProp, loginDataProps } from '../../@types/express/index'
+import { UserDuplicateCheckProps } from '../../@types/express/index'
 import { jwtGenerator } from '../services/jwt-services'
 
 

@@ -6,12 +6,6 @@
   margin-bottom: 0.5em;
 }
 
-.loginRecovery {
-  font-weight: 300;
-  font-size: 0.8em;
-  text-align: center;
-}
-
 /* Form styles */
 .form {
   max-width: 20em;
@@ -111,6 +105,11 @@
   background-color: rgba(0, 0, 0, 0);
   color: var(--linkFontColor);
   text-decoration: underline;
+}
+
+.loginRecovery {
+  text-align: center;
+  font-size: 0.8em;
 }
 
 @media screen and (min-width: 600px) {

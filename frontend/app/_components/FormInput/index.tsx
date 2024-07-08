@@ -3,7 +3,7 @@
 import { ChangeEvent, useState, useEffect } from 'react';
 import styles from './index.module.css'
 import { formDataInputs } from './inputFieldArray'
-import InputField from '../inputField';
+import InputField from '../InputField';
 import { useRouter } from 'next/navigation';
 
 
