@@ -1,4 +1,5 @@
 import { RowDataPacket } from "mysql2";
+import { JwtPayload } from "jsonwebtoken";
 
 export interface CreateAccountProps {
   email: string;
@@ -11,8 +12,6 @@ export interface UserDataProps {
   passwordHash: string;
 }
 
-
-  
 export interface UserDuplicateCheckProps extends RowDataPacket {
   login: string;
 }
@@ -33,11 +32,15 @@ export interface loginDataProps {
 }
 
 export interface CookieOptionProps {
-  maxAge: number | undefined,  
+  maxAge?: number,  
   httpOnly: boolean,  
   sameSite?: boolean | "lax" | "strict" | "none",
   secure: boolean,
   signed: boolean,
+}
+
+export interface TokenPayloadProps extends JwtPayload {
+  email: string;
 }
 
 export interface AuthTokenProps {
@@ -50,3 +53,10 @@ export interface ErrorResponseProps {
   error: string
 }
 
+export interface TokenPayloadProps {
+  email: string,
+  password: string,
+  rememberId: boolean,
+  iat: number,
+  exp: number
+}

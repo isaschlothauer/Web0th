@@ -39,10 +39,8 @@
   background-color: var(--login-bg-color);
   border: 1px solid rgb(204, 204, 204);
   padding-bottom: 2em;
-  /* max-width: 27em; Adjust this for responsive screen */
   margin: 0 auto 0 auto;
   box-shadow: 3px 3px 5px rgba(150, 148, 148, 0.2);
-
 }
 
 .linkStyle {

@@ -1,14 +1,15 @@
 .dashboardContainer {
-  border: 1px dotted red;
   height: 100vh;
-  background-color: var(--bg-color) ;
-
+  width: 100vw;
+  background-color: var(--bg-color);
 }
 
 .centerContainer {
-  border: 1px dotted green;
-  width: 600px;  
-  margin: auto
+  background-color: var(--login-bg-color);
+  max-width: 600px;  
+  margin: auto;
+  padding: 1em;
+  box-shadow: 3px 3px 5px rgba(150, 148, 148, 0.2);
 }
 
 .dashboardMainHeader {
@@ -20,4 +21,41 @@
 .signOutButton {
   display: flex;
   margin: auto;
+  margin-top: 1em;
+  min-width: 3em;
+  padding: 0 1em;
+  border: 1px solid rgba(255, 255, 255, 0);
+  border-radius: 0.3em;
+  font-size: 1em;
+  height: 2em;
+  line-height: 2em;
+  text-align: center;
+  font-weight: 600;
+  color: var(--mainFontColor);
+  background: rgb(40, 61, 255);
+}
+
+.dashboardParagraph {
+  margin-top: 1em;
+}
+
+.techStackList {
+  display: block;
+  margin-top: 1em;
+}
+
+.techStackParagraph {
+  display: flex;
+}
+
+.tech {
+  width: 8em;
+}
+
+@media screen and (min-width: 600px) {
+
+  .centerContainer {
+    border-radius: 0.4em;
+    max-width: 27em; 
+  }
 }

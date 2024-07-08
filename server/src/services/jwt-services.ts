@@ -1,5 +1,5 @@
-import { LoginValueProps, CookieOptionProps } from '../../@types/express/index'
-import jwt from 'jsonwebtoken';
+import { LoginValueProps, CookieOptionProps, TokenPayloadProps } from '../../@types/express/index'
+import jwt, { JwtPayload } from 'jsonwebtoken';
 
 const jwtSecret : string | undefined = process.env.JWTSECRET;
 
@@ -41,9 +41,10 @@ export const jwtVerify = async (token: string) => {
   
   try {
     if (jwtSecret && token) {
-        jwt.verify(token, jwtSecret)
-
-        return { success: true, message: "Token verified" }
+        const verifiedUser = jwt.verify(token, jwtSecret);
+        const { email }  = verifiedUser as TokenPayloadProps;
+        
+        return { success: true, message: "Token verified", user: email }
     }
   }
   catch (err) {
