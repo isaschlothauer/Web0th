@@ -37,12 +37,9 @@ export default function Home () {
   useEffect(() => {
     if (authenticationState && authenticationState.status === 200) {
       router.push('/dashboard');
-    } else {
+    } else if (authenticationState && authenticationState.status !== 200) {
       getCookieKillOrder()
     }
-    // else {
-    //   getCookieKillOrder();
-    // }
   });
 
   // Component ID: 

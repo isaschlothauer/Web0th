@@ -16,3 +16,8 @@
   margin-top: 1em;
   font-weight: 400;
 }
+
+.signOutButton {
+  display: flex;
+  margin: auto;
+}

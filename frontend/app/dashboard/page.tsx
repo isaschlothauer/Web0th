@@ -1,10 +1,10 @@
 'use client'
 
-import { useContext, useEffect, useState } from 'react';
-import { LoginContext } from '../contexts/loginContext';
+import { useEffect, useState } from 'react';
 import { useRouter } from 'next/navigation';
 import styles from './index.module.css'
 import { useExpirationValidator } from '../hooks/useExpirationValidator';
+import axios from 'axios';
 
 export default function Dashboard () {
   const [ componentLoader, setComponentLoader ] = useState<boolean | null>(null);
@@ -14,19 +14,26 @@ export default function Dashboard () {
 
   useEffect(() => {
     authenticationState && console.log(authenticationState);
-    if (authenticationState && authenticationState.status === undefined) {
+    if (authenticationState && authenticationState.status !== 200) {
       setComponentLoader(false);
       
-      
-
       router.push('/');
     }
-
     setComponentLoader(true);
   })
 
 
-  const testFunc = () => {
+  // Logging out
+  const logOut = async () => {
+    await axios.delete(`${process.env.NEXT_PUBLIC_URL}:${process.env.NEXT_PUBLIC_BACKEND_PORT}/api/${process.env.NEXT_PUBLIC_COOKIE}`, 
+      {withCredentials: true,
+      headers: {
+        'Access-Control-Allow-Origin': '*', 
+        'Content-Type': 'application/cookie'
+        }
+      })
+    setComponentLoader(false);
+    router.push('/');
   }
 
 
@@ -41,9 +48,10 @@ export default function Dashboard () {
           </article>
           <button
             type="button"
-            onClick={testFunc}
+            onClick={logOut}
+            className={styles.signOutButton}
           >
-            Test
+            Sign out
           </button>
         </div>
         
