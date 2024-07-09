@@ -14,7 +14,7 @@ const AccountRecovery = dynamic(() => import('./_components/AccountRecovery'))
 const getCookieKillOrder = async () => {
   try {
     // API query returns res.clearCooie() response and deletes stored cookie
-    await axios.delete(`${process.env.NEXT_PUBLIC_URL}:${process.env.NEXT_PUBLIC_BACKEND_PORT}/api/${process.env.NEXT_PUBLIC_COOKIE}`, 
+    await axios.delete(`${process.env.NEXT_PUBLIC_URL}${process.env.NEXT_PUBLIC_BACKEND_PORT}/api/${process.env.NEXT_PUBLIC_COOKIE}`, 
       {withCredentials: true,
       headers: {
         'Access-Control-Allow-Origin': '*', 

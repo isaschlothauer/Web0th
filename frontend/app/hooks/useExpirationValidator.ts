@@ -8,7 +8,7 @@ export const useExpirationValidator = () => {
   useEffect(() => {
       const loginStatusCheck = async () => {
         try {
-          const response: any = await axios.get(`${process.env.NEXT_PUBLIC_URL}:${process.env.NEXT_PUBLIC_BACKEND_PORT}/api/${process.env.NEXT_PUBLIC_VERIFY}`, 
+          const response: any = await axios.get(`${process.env.NEXT_PUBLIC_URL}${process.env.NEXT_PUBLIC_BACKEND_PORT}/api/${process.env.NEXT_PUBLIC_VERIFY}`, 
             {withCredentials: true,
             headers: {
               'Access-Control-Allow-Origin': '*', 

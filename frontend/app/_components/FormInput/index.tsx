@@ -1,13 +1,13 @@
 "use client"
 
-import { ChangeEvent, useState, useEffect } from 'react';
+import { ChangeEvent, useState } from 'react';
 import styles from './index.module.css'
 import { formDataInputs } from './inputFieldArray'
 import InputField from '../InputField';
 import { useRouter } from 'next/navigation';
 
 
-import axios, {isCancel, AxiosError} from 'axios';
+import axios from 'axios';
 
 interface FormDataProps {
   email: string;
@@ -61,7 +61,7 @@ export default function FormInput(componentSetter: ComponentProps) {
 
     // API call
     try {
-      await axios.post(`${process.env.NEXT_PUBLIC_URL}:${process.env.NEXT_PUBLIC_BACKEND_PORT}/api/${process.env.NEXT_PUBLIC_LOGIN}`, formData, {withCredentials: true})
+      await axios.post(`${process.env.NEXT_PUBLIC_URL}${process.env.NEXT_PUBLIC_BACKEND_PORT}/api/${process.env.NEXT_PUBLIC_LOGIN}`, formData, {withCredentials: true})
       .then((res: any) => {
 
         Object.keys(formData).forEach((key: string) => {

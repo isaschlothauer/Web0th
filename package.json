@@ -1,13 +1,16 @@
 {
-  "name": "AutheticationDemo",
+  "name": "FUll stack authentication demo",
   "version": "1.0.0",
-  "description": "",
+  "description": "This project is a demo full stack web authentication application utilizing NextJS, Node/Express, MySql/MariaDB and TypeScript.",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start:frontend-dev": "cd frontend && pnpm run dev",
     "start:server-dev": "cd server && pnpm run dev",
-    "dev": "concurrently \"pnpm run start:frontend-dev\" \"pnpm run start:server-dev\""
+    "dev": "concurrently \"pnpm run start:frontend-dev\" \"pnpm run start:server-dev\"",
+    "start:frontend-start": "cd frontend && pnpm run start",
+    "start:server-start": "cd server && pnpm run start",
+    "start": "concurrently \"pnpm run start:frontend-start\" \"pnpm run start:server-start\""
   },
   "keywords": [],
   "author": "",

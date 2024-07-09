@@ -16,7 +16,7 @@ export default function RootLayout({
     <html lang="en">
       <Head>
         <title>Fullstack Authentication Demo</title>
-        <meta name="description" content="React, Express and MySQL/MariaDB authentication app demo" />
+        <meta name="description" content="NextJS, Express and MySQL/MariaDB authentication demo" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
       </Head>
       <body className={`${manrope.className} layoutStyle`}>
