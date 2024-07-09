@@ -52,7 +52,8 @@ export default function Dashboard () {
           <div className={styles.centerContainer}>
             <article>
               <p>Welcome. You are logged in.</p>
-              <p>Hello. My name is Isamu Schlothauer and this is a demo of full stack web authentication application, initially started as a part of larger personal project.</p>
+              <p>Hello. This is a demo of full stack web authentication application, initially started as a part of larger personal project. This project&apos;s frontend utilizes NextJS, and authentication and maintaining logged in status is handled by Node / Express backend using HttpOnly cookies. 
+              </p>
               <p className={styles.dashboardParagraph}>Current user login: {userName}</p>
               <div className={styles.techStackList}>
                 <p className={styles.techStack}>Project tech stack: </p>
