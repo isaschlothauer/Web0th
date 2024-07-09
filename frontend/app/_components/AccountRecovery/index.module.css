@@ -1,0 +1,100 @@
+.signInContainerText {
+  font-weight: 400;
+  font-size: 1em;
+  text-align: center;
+  margin-top: 1em;
+  margin-bottom: 0.5em;
+}
+
+/* Form styles */
+.form {
+  max-width: 20em;
+  margin: 0 auto 0 auto;
+  padding: 0 1em 0 1em;
+}
+
+.formContentStyles {
+  align-content: center;
+}
+
+.ulStyles {
+  list-style-type: none;
+}
+
+.listStyles {
+  display: flex;
+  align-items: center;
+  justify-content:space-between;
+  padding: 0.5em 0;
+  gap: 0.5em; 
+}
+
+.inputFieldLabel {
+  width: 6em;
+}
+
+.inputFieldStyles {
+  width: 100%;
+  border: 1px solid rgba(150, 148, 148, 0.5);
+  background-color: var(--inputFieldBackgroundColor);
+  height: 2em;
+  border-radius: 0.5em;
+  box-sizing: border-box;
+  padding: 0 0.5em 0 0.5em;
+  box-shadow: 3px 3px 5px rgba(150, 148, 148, 0.2);
+}
+
+.formContentStyles, .inputClearContainer {
+  width: 100%;
+}
+
+/* Checkbox styles */
+.checkbox {
+  display: flex;
+  align-items: center;
+  margin-top: 1em;
+}
+
+.checkbox > input {
+  height: 0.8em;
+}
+
+.checkbox > label {
+  margin-left: 0.5em; 
+  font-weight: 600;
+  font-size: 0.8em;
+  vertical-align: middle;
+}
+
+/* Submit button styles */
+.submitButtonAlignment {
+  display: flex;
+  align-content: center;
+  justify-content: center;
+  margin: 1.5em 0 1em 0;
+}
+
+.accountRegCancel {
+  border: rgba(0, 0, 0, 0);
+  background: rgba(0, 0, 0, 0);
+  display: flex;
+  margin: 0 auto 0 auto;
+}
+
+.inputDisabled {
+  text-align: center;
+  font-size: 0.8em;
+  margin-top: 1em;
+  color: var(--ErrorTextColor);
+}
+
+@media screen and (min-width: 600px) {
+  .signInContainerText {
+    font-weight: 400;
+    font-size: 1.2em;
+  }
+
+  .form {
+    padding: 0;
+  }
+}

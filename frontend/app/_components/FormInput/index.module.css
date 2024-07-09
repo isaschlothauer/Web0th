@@ -1,0 +1,128 @@
+.signInContainerText {
+  font-weight: 400;
+  font-size: 1em;
+  text-align: center;
+  margin-top: 1em;
+  margin-bottom: 0.5em;
+}
+
+/* Form styles */
+.form {
+  max-width: 20em;
+  margin: 0 auto 0 auto;
+  padding: 0 1em 0 1em;
+}
+
+.registration {
+  border: rgba(0, 0, 0, 0);
+  background: rgba(0, 0, 0, 0);
+  margin-left: 0.2em;
+  font-weight: 400;
+  font-size: 1.2em;
+  color: var(--linkFontColor);
+  text-decoration: underline;
+}
+
+.formContentStyles {
+  align-content: center;
+}
+
+.ulStyles {
+  list-style-type: none;
+}
+
+.listStyles {
+  display: flex;
+  align-items: center;
+  justify-content:space-between;
+  padding: 0.5em 0;
+  gap: 0.5em; 
+}
+
+.inputFieldLabel {
+  width: 6em;
+  font-size: 0.9em;
+}
+
+.inputFieldStyles {
+  width: 100%;
+  border: 1px solid rgba(150, 148, 148, 0.5);
+  background-color: var(--inputFieldBackgroundColor);
+  height: 2em;
+  border-radius: 0.5em;
+  box-sizing: border-box;
+  padding: 0 0.5em 0 0.5em;
+  box-shadow: 3px 3px 5px rgba(150, 148, 148, 0.2);
+}
+
+.formContentStyles, .inputClearContainer {
+  width: 100%;
+}
+
+/* Checkbox styles */
+.checkbox {
+  display: flex;
+  align-items: center;
+  margin-top: 1em;
+}
+
+.checkbox > input {
+  height: 0.8em;
+}
+
+.checkbox > label {
+  margin-left: 0.5em; 
+  font-weight: 600;
+  font-size: 0.8em;
+  vertical-align: middle;
+}
+
+.statusMsg {
+  text-align: center;
+  font-size: 0.8em;
+  margin-top: 1em;
+}
+
+
+/* Submit button styles */
+.submitButtonAlignment {
+  display: flex;
+  align-content: center;
+  justify-content: center;
+  margin: 1em 0 1em 0;
+}
+
+.submitButton {
+  width: 6em;
+  height: 2em;
+  border: 1px solid rgb(0, 0, 0, 0.1);
+  border-radius: 0.5em;
+}
+
+.linkStyle {
+  margin-left: 0.5em;
+  border: 1px solid rgba(0, 0, 0, 0);
+  background-color: rgba(0, 0, 0, 0);
+  color: var(--linkFontColor);
+  text-decoration: underline;
+}
+
+.loginRecovery {
+  text-align: center;
+  font-size: 0.8em;
+}
+
+@media screen and (min-width: 600px) {
+  .signInContainerText {
+    font-weight: 400;
+    font-size: 1.2em;
+  }
+
+  .form {
+    padding: 0;
+  }
+
+  .inputFieldLabel {
+    font-size: 1em;
+  }
+}
