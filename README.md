@@ -1,4 +1,4 @@
-# NextJS-Node/Express-MariaDB web Authentication (demo)
+# NextJS-Node/Express-MariaDB web authentication demo
 This repository contains the code base for a full stack web authentication application demo. Frontend is built on NextJS and authentication and maintaining logged in status is handled by Node / Express backend using HttpOnly cookies. 
 <br />
 
