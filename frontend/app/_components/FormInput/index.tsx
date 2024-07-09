@@ -61,7 +61,7 @@ export default function FormInput(componentSetter: ComponentProps) {
 
     // API call
     try {
-      await axios.post(`${process.env.NEXT_PUBLIC_URL}${process.env.NEXT_PUBLIC_BACKEND_PORT}/api/${process.env.NEXT_PUBLIC_LOGIN}`, formData, {withCredentials: true})
+      await axios.post(`${process.env.NEXT_PUBLIC_URL}:${process.env.NEXT_PUBLIC_BACKEND_PORT}/api/${process.env.NEXT_PUBLIC_LOGIN}`, formData, {withCredentials: true})
       .then((res: any) => {
 
         Object.keys(formData).forEach((key: string) => {

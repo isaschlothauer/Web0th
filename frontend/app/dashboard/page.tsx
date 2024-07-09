@@ -32,7 +32,7 @@ export default function Dashboard () {
 
   // Log out trigger function. Request res.clearCookie() to delete cookie
   const logOut = async () => {
-    await axios.delete(`${process.env.NEXT_PUBLIC_URL}${process.env.NEXT_PUBLIC_BACKEND_PORT}/api/${process.env.NEXT_PUBLIC_COOKIE}`, 
+    await axios.delete(`${process.env.NEXT_PUBLIC_URL}:${process.env.NEXT_PUBLIC_BACKEND_PORT}/api/${process.env.NEXT_PUBLIC_COOKIE}`, 
       {withCredentials: true,
       headers: {
         'Access-Control-Allow-Origin': '*', 

@@ -103,7 +103,7 @@ export default function CreateAccount(componentSetter: ComponentProps) {
     // API call
     if (renderErrorMsg.email == false && passwordMatchVerification == 0) {
       try{
-        const res = await axios.post(`${process.env.NEXT_PUBLIC_URL}${process.env.NEXT_PUBLIC_BACKEND_PORT}/api/${process.env.NEXT_PUBLIC_REGISTER}`, registrationData);     
+        const res = await axios.post(`${process.env.NEXT_PUBLIC_URL}:${process.env.NEXT_PUBLIC_BACKEND_PORT}/api/${process.env.NEXT_PUBLIC_REGISTER}`, registrationData);     
 
         if (res.data.success === true) {
           setRegistrationData({

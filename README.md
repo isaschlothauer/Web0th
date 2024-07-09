@@ -89,4 +89,3 @@ pnpm run start
 Q: Backend crashes at start
 
 A: Database imported and properly configured? .env file created and configured? Make sure that the port is not trying to use already used port.
-
