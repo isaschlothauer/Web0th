@@ -1,36 +1,67 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# NextJS-Node/Express-MariaDB web Authentication (demo)
+This repository contains the code base for a full stack web authentication application demo. Frontend is built on NextJS and authentication and maintaining logged in status is handled by Node / Express backend using HttpOnly cookies. 
 
-## Getting Started
+<br />
+Tech stack: <br />
+NextJS <br />
+Node / Express <br />
+MySql/MariaDB <br />
+TypeScript <br />
 
-First, run the development server:
+<br />
+pnpm <br />
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+
+### Contents
+[Get Started](#get-started) \
+[Frontend configuration](#setup-frontend-in-frontend) \
+[Basic Commands](#basic-commands) \
+
+<br />
+
+## Get started
+
+### Initial setup
+#### Clone repository:
+
+```
+git clone git@github.com:isaschlothauer/AutheticationDemo.git
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+#### Install dependencies from the project root directory:
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+```
+pnpm i -r
+```
+<br />
 
-## Learn More
+### Setup frontend (in /frontend)
+If not done so, install packages
+```
+pnpm i
+```
+#### Configure frontend in .env.local
+Create an .env.local from ./frontend/.env.local.sample
 
-To learn more about Next.js, take a look at the following resources:
+** Default backend paths work with the accompanying backend. Can be changed as needed.  
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+<br />
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+### Compile and run or run in dev mode (in /frontend)
+#### Basic commands
 
-## Deploy on Vercel
+From the root/frontend directory, the application can be started concurrently. 
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+Dev mode:
+```
+pnpm run dev
+```
+Build:
+```
+pnpm run build
+```
+Run:
+```
+pnpm run start
+````
