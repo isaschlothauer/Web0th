@@ -1,28 +1,25 @@
-# NextJS-Node/Express-MariaDB web authentication demo
+# NextJS-Node/Express-MariaDB web Authentication (demo)
 This repository contains the code base for a full stack web authentication application demo. Frontend is built on NextJS and authentication and maintaining logged in status is handled by Node / Express backend using HttpOnly cookies. 
-
 <br />
+
 Tech stack: <br />
-NextJS <br />
-Node / Express <br />
-MySql/MariaDB <br />
-TypeScript <br />
-
+- [NextJS](https://nextjs.org/) <br />
+- [Node](https://nodejs.org/en) / [Express](https://expressjs.com/) <br />
+- [MySql](https://www.mysql.com/) / [MariaDB](https://mariadb.org/) <br />
+- [TypeScript](https://www.typescriptlang.org/) <br />
+- [pnpm](https://pnpm.io/) 
 <br />
-pnpm <br />
+
 
 
 ### Contents
-[Get Started](#get-started) \
-[Backend and database configuration](#setup-backend-and-database-in-server) \
-[Frontend configuration](#setup-frontend-in-frontend)\
-[Basic Commands](#basic-commands) \
-[Run front and backend](#compile-and-run-or-run-in-dev-mode-in)
-
+1. [Getting Started](#getting-started) \
+2. [Backend and database configuration](#setup-backend-and-database-in-server) \
+3. [Frontend configuration](#setup-frontend-in-frontend)\
+4. [Run application](#compile-and-run-or-run-in-dev-mode-in)
 <br />
 
-## Get started
-
+## Getting started
 ### Initial setup
 #### Clone repository:
 
@@ -30,29 +27,11 @@ pnpm <br />
 git clone git@github.com:isaschlothauer/AutheticationDemo.git
 ```
 
-
 #### Install dependencies from the project root directory:
 
 ```
 pnpm i -r
 ```
-<br />
-
-### Setup backend and database (in /server)
-#### Preparing database and import database file 
-
-
-Create project database in MySQL (mysql) or MariaDB (mariadb) and run: 
-
-```
-mysql -u your_username -p database_name < ./server/src/models/database.sql
-```
-
-#### Configuring database access in .env
-Create an .env from ./server/.env.sample
-
-** Change front and back ports as needed. Cors uses F_PORT for its configuration. 
-
 <br />
 
 ### Setup frontend (in /frontend)
@@ -68,9 +47,8 @@ Create an .env.local from ./frontend/.env.local.sample
 <br />
 
 ### Compile and run or run in dev mode (in /)
-#### Basic commands
 
-From the root directory, the application can be started concurrently. 
+In project root directory:
 
 Dev mode:
 ```

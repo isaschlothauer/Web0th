@@ -1,33 +1,29 @@
 # NextJS-Node/Express-MariaDB web Authentication (demo)
 This repository contains the code base for a full stack web authentication application demo. Frontend is built on NextJS and authentication and maintaining logged in status is handled by Node / Express backend using HttpOnly cookies. 
-
 <br />
+
 Tech stack: <br />
-NextJS <br />
-Node / Express <br />
-MySql/MariaDB <br />
-TypeScript <br />
-
+- [NextJS](https://nextjs.org/) <br />
+- [Node](https://nodejs.org/en) / [Express](https://expressjs.com/) <br />
+- [MySql](https://www.mysql.com/) / [MariaDB](https://mariadb.org/) <br />
+- [TypeScript](https://www.typescriptlang.org/) <br />
+- [pnpm](https://pnpm.io/) 
 <br />
-pnpm <br />
-
 
 ### Contents
-[Get Started](#get-started) \
-[Frontend configuration](#setup-frontend-in-frontend) \
-[Basic Commands](#basic-commands) \
+1. [Getting Started](#getting-started) 
+2. [Frontend configuration](#setup-frontend-in-frontend) 
+3. [Run application](#compile-and-run-or-run-in-dev-mode-in)
 
 <br />
 
-## Get started
-
+## Getting started
 ### Initial setup
 #### Clone repository:
 
 ```
 git clone git@github.com:isaschlothauer/AutheticationDemo.git
 ```
-
 
 #### Install dependencies from the project root directory:
 
@@ -48,10 +44,9 @@ Create an .env.local from ./frontend/.env.local.sample
 
 <br />
 
-### Compile and run or run in dev mode (in /frontend)
-#### Basic commands
+### Compile and run or run in dev mode (in /)
 
-From the root/frontend directory, the application can be started concurrently. 
+In project root directory:
 
 Dev mode:
 ```
